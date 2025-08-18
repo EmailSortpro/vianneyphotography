@@ -4,7 +4,350 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vianney Hastings - Photographe Mariages & Événements</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Photographe professionnel spécialisé dans les mariages, événements et portraits. Paris et région parisienne.">
+    <link rel="canonical" href="https://superb-melba-5f704d.netlify.app/">
+    <style>
+        /* Reset et variables CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f8f8f6;
+            --accent: #c9a96e;
+            --text-light: #666;
+            --white: #ffffff;
+            --black: #000000;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background: var(--white);
+        }
+
+        /* Navigation horizontale en haut */
+        .nav-horizontal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #eee;
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        /* Menu mobile */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: 8px;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Contenu principal avec marge pour la nav */
+        .main-content {
+            margin-top: 80px;
+            min-height: 100vh;
+        }
+
+        .page {
+            padding: 60px;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* Page d'accueil */
+        .home-page {
+            text-align: center;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: var(--primary);
+            letter-spacing: -1px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            animation: fadeInUp 1.5s ease-out 0.3s both;
+        }
+
+        /* Photo principale */
+        .hero-image {
+            width: 100%;
+            max-width: 800px;
+            height: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            animation: fadeInUp 1.5s ease-out 0.6s both;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: var(--accent);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1.5s ease-out 0.9s both;
+        }
+
+        .cta-button:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Section de présentation rapide */
+        .intro-section {
+            background: var(--secondary);
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .intro-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .intro-content h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        .intro-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+
+        .services-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .service-preview {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .service-preview h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .service-preview p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Footer simple */
+        .footer {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--white);
+                flex-direction: column;
+                justify-content: start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+                box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+            
+            .nav-menu.mobile-active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+            
+            .nav-menu a {
+                font-size: 1.1rem;
+                padding: 12px 24px;
+            }
+
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .page {
+                padding: 40px 20px;
+            }
+
+            .intro-section {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
+                height: 400px;
+            }
+
+            .main-content {
+                margin-top: 70px;
+            }
+
+            .services-preview {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation horizontale en haut -->
@@ -19,6 +362,11 @@
                 <li><a href="websites.html">Sites Web</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+            <div class="menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
@@ -30,13 +378,107 @@
                 <h1>Vianney Hastings</h1>
                 <p class="subtitle">Photographe Mariages, Événements, Portraits</p>
                 
-                <!-- Photo principale DSC05172.jpg -->
+                <!-- Photo principale DSC05172.jpg avec fallback intégré -->
                 <div class="hero-image">
-                    <img src="images/DSC05172.jpg" alt="Photo principale - Couple marié" 
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 800 600\'><rect fill=\'%23c9a96e\' width=\'800\' height=\'600\'/><text x=\'50%\' y=\'45%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'20\' font-family=\'Arial\'>DSC05172.jpg</text><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'16\' font-family=\'Arial\'>Photo principale du couple</text></svg>'">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Couple de mariés - Photo principale" 
+                         loading="eager">
+                </div>
+                
+                <a href="portfolio.html" class="cta-button">Découvrir mon travail</a>
+            </div>
+        </div>
+
+        <!-- Section de présentation -->
+        <div class="intro-section fade-in">
+            <div class="intro-content">
+                <h2>Capturer vos moments précieux</h2>
+                <p>Photographe passionné basé en région parisienne, je vous accompagne dans tous vos projets photo : mariages, événements privés et professionnels, portraits. Mon approche naturelle et authentique permet de saisir l'essence de chaque moment.</p>
+                
+                <div class="services-preview">
+                    <div class="service-preview">
+                        <div class="service-icon">💒</div>
+                        <h3>Mariages</h3>
+                        <p>Reportage complet de votre jour J avec un style naturel et élégant</p>
+                    </div>
+                    <div class="service-preview">
+                        <div class="service-icon">🎉</div>
+                        <h3>Événements</h3>
+                        <p>Couverture photo de vos événements privés et professionnels</p>
+                    </div>
+                    <div class="service-preview">
+                        <div class="service-icon">👤</div>
+                        <h3>Portraits</h3>
+                        <p>Séances photo individuelles, couples ou famille dans un cadre détendu</p>
+                    </div>
+                    <div class="service-preview">
+                        <div class="service-icon">💻</div>
+                        <h3>Sites Web</h3>
+                        <p>Création de sites web modernes et sur-mesure pour professionnels</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Vianney Hastings Photography - Tous droits réservés</p>
+    </footer>
+
+    <script>
+        // Menu mobile
+        function toggleMobileMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            navMenu.classList.toggle('mobile-active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // Fermer le menu mobile quand on clique sur un lien
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-menu').classList.remove('mobile-active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            });
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Effet navbar au scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.nav-horizontal');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
