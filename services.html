@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Vianney Hastings Photography</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation horizontale en haut -->
+    <nav class="nav-horizontal">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Vianney Hastings</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="websites.html">Sites Web</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="main-content">
+        <!-- Page Services -->
+        <div class="page services-page">
+            <h2 class="section-title">Mes Services</h2>
+            <div class="services-content">
+                <div class="service-section fade-in">
+                    <h3>Mariages et Évènements</h3>
+                    <div class="service-text">
+                        <p>Ici, célébrons <strong>chaque moment spécial</strong> avec des photos de haute qualité et des souvenirs inoubliables. Que vous soyez un couple cherchant à <strong>immortaliser les moments magiques</strong> de son mariage ou un <strong>organisateur d'événements</strong> à la recherche de <strong>photos de qualités</strong>, j'ai tout ce qu'il faut pour rendre votre journée mémorable. Votre assurance, s'assurer de votre satisfaction de ma prestation.</p>
+                    </div>
+                </div>
+
+                <div class="service-section fade-in">
+                    <h3>Portraits</h3>
+                    <div class="service-text">
+                        <p>Mon objectif principal ici, capturer <strong>qui vous êtes vraiment</strong>. Que vous cherchiez à capturer des moments de couples, des portraits de famille, ou des clichés professionnels ou personnels, je suis là pour <strong>transformer vos visions en réalité</strong>. Mes séances photo sont conçues pour être détendues et agréables, afin que vous puissiez être vous-même devant l'objectif. Découvrez mon portfolio, et réservez votre séance dès aujourd'hui pour immortaliser vos souvenirs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
