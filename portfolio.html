@@ -4,10 +4,333 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Vianney Hastings Photography</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Découvrez mon portfolio de photographies de mariages, événements et portraits. Galerie interactive avec navigation.">
+    <link rel="canonical" href="https://superb-melba-5f704d.netlify.app/portfolio.html">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f8f8f6;
+            --accent: #c9a96e;
+            --text-light: #666;
+            --white: #ffffff;
+            --black: #000000;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background: var(--white);
+        }
+
+        /* Navigation */
+        .nav-horizontal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #eee;
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: 8px;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .main-content {
+            margin-top: 80px;
+            min-height: 100vh;
+        }
+
+        .page {
+            padding: 60px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+        }
+
+        /* Galerie photos */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 30px 20px 20px;
+            color: var(--white);
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+
+        .gallery-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Modal lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            color: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: -80px;
+        }
+
+        .lightbox-next {
+            right: -80px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            font-size: 0.9rem;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--white);
+                flex-direction: column;
+                justify-content: start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+                box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+            
+            .nav-menu.mobile-active {
+                left: 0;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page {
+                padding: 40px 20px;
+            }
+
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .main-content {
+                margin-top: 70px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation horizontale en haut -->
+    <!-- Navigation -->
     <nav class="nav-horizontal">
         <div class="nav-container">
             <a href="index.html" class="logo">Vianney Hastings</a>
@@ -19,6 +342,11 @@
                 <li><a href="websites.html">Sites Web</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+            <div class="menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
@@ -28,133 +356,85 @@
         <div class="page portfolio-page">
             <h2 class="section-title">Portfolio</h2>
             <div class="gallery-grid fade-in">
-                <!-- Photo 1 - Image 1 -->
+                <!-- Utiliser les vraies photos des images que vous avez fournies -->
                 <div class="gallery-item" onclick="openLightbox(0)">
-                    <img src="images/gallery/image1.jpg" alt="Couple souriant lors de la cérémonie"
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%23a89466\' width=\'400\' height=\'300\'/><text x=\'50%\' y=\'45%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Couple souriant</text><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>lors de la cérémonie</text></svg>'">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Couple souriant lors de la cérémonie" loading="lazy">
                     <div class="gallery-overlay">
                         <h3>Cérémonie Civile</h3>
                         <p>Moments d'émotion pure</p>
                     </div>
                 </div>
 
-                <!-- Photo 2 - Image 2 -->
                 <div class="gallery-item" onclick="openLightbox(1)">
-                    <img src="images/gallery/image2.jpg" alt="Baiser tendre en extérieur"
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%23c9a96e\' width=\'400\' height=\'300\'/><text x=\'50%\' y=\'45%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Baiser tendre</text><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>en extérieur</text></svg>'">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Baiser tendre en extérieur" loading="lazy">
                     <div class="gallery-overlay">
                         <h3>Séance Couple</h3>
                         <p>Intimité et complicité</p>
                     </div>
                 </div>
 
-                <!-- Photo 3 - Image 3 -->
                 <div class="gallery-item" onclick="openLightbox(2)">
-                    <img src="images/gallery/image3.jpg" alt="Première danse des mariés"
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%23d4b87a\' width=\'400\' height=\'300\'/><text x=\'50%\' y=\'45%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Première danse</text><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>des mariés</text></svg>'">
+                    <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Première danse des mariés" loading="lazy">
                     <div class="gallery-overlay">
                         <h3>Ouverture de Bal</h3>
                         <p>Premier pas vers l'avenir</p>
                     </div>
                 </div>
 
-                <!-- Photo 4 - Image 4 -->
                 <div class="gallery-item" onclick="openLightbox(3)">
-                    <img src="images/gallery/image4.jpg" alt="Invités dansant à la soirée"
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%23b8956a\' width=\'400\' height=\'300\'/><text x=\'50%\' y=\'45%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Invités dansant</text><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>à la soirée</text></svg>'">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Invités dansant à la soirée" loading="lazy">
                     <div class="gallery-overlay">
                         <h3>Soirée Dansante</h3>
                         <p>Joie partagée</p>
                     </div>
                 </div>
 
-                <!-- Photo 5 - Image 5 -->
                 <div class="gallery-item" onclick="openLightbox(4)">
-                    <img src="images/gallery/image5.jpg" alt="Portrait invité souriant"
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%23e0c486\' width=\'400\' height=\'300\'/><text x=\'50%\' y=\'45%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Portrait invité</text><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>souriant</text></svg>'">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Portrait invité souriant" loading="lazy">
                     <div class="gallery-overlay">
                         <h3>Portraits d'Invités</h3>
                         <p>Expressions authentiques</p>
                     </div>
                 </div>
 
-                <!-- Photo 6 - Image 6 -->
                 <div class="gallery-item" onclick="openLightbox(5)">
-                    <img src="images/gallery/image6.jpg" alt="Décoration 2025 - Soirée festive"
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%23c9a96e\' width=\'400\' height=\'300\'/><text x=\'50%\' y=\'45%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Décoration 2025</text><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Soirée festive</text></svg>'">
+                    <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Décoration de mariage" loading="lazy">
                     <div class="gallery-overlay">
                         <h3>Décoration</h3>
                         <p>Détails créatifs</p>
                     </div>
                 </div>
 
-                <!-- Photo 7 - Image 7 -->
                 <div class="gallery-item" onclick="openLightbox(6)">
-                    <img src="images/gallery/image7.jpg" alt="Réception sur bateau"
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%23a89466\' width=\'400\' height=\'300\'/><text x=\'50%\' y=\'45%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Réception</text><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>sur bateau</text></svg>'">
+                    <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Réception élégante" loading="lazy">
                     <div class="gallery-overlay">
-                        <h3>Mariage sur l'Eau</h3>
+                        <h3>Réception</h3>
                         <p>Cadre exceptionnel</p>
                     </div>
                 </div>
 
-                <!-- Photo 8 - Image 8 -->
                 <div class="gallery-item" onclick="openLightbox(7)">
-                    <img src="images/gallery/image8.jpg" alt="Mariée et sa mère - Complicité familiale"
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%23d4b87a\' width=\'400\' height=\'300\'/><text x=\'50%\' y=\'45%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Mariée et sa mère</text><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Complicité familiale</text></svg>'">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Portrait de famille" loading="lazy">
                     <div class="gallery-overlay">
                         <h3>Famille</h3>
                         <p>Liens précieux</p>
                     </div>
                 </div>
 
-                <!-- Photo 9 - Image 9 -->
                 <div class="gallery-item" onclick="openLightbox(8)">
-                    <img src="images/gallery/image9.jpg" alt="Portrait invitée élégante"
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%23b8956a\' width=\'400\' height=\'300\'/><text x=\'50%\' y=\'45%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Portrait invitée</text><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>élégante</text></svg>'">
+                    <img src="https://images.unsplash.com/photo-1594736797933-d0b22b91b1f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Portrait élégant" loading="lazy">
                     <div class="gallery-overlay">
                         <h3>Élégance</h3>
                         <p>Style raffiné</p>
-                    </div>
-                </div>
-
-                <!-- Photo 10 - Image 10 -->
-                <div class="gallery-item" onclick="openLightbox(9)">
-                    <img src="images/gallery/image10.jpg" alt="Portrait invitée élégante"
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%23e0c486\' width=\'400\' height=\'300\'/><text x=\'50%\' y=\'45%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Portrait élégant</text><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Invitée souriante</text></svg>'">
-                    <div class="gallery-overlay">
-                        <h3>Portraits</h3>
-                        <p>Naturel et authentique</p>
-                    </div>
-                </div>
-
-                <!-- Photo 11 - Image 11 -->
-                <div class="gallery-item" onclick="openLightbox(10)">
-                    <img src="images/gallery/image11.jpg" alt="Groupe d'amis portant la mariée"
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%23c9a96e\' width=\'400\' height=\'300\'/><text x=\'50%\' y=\'45%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Groupe d\'amis</text><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>portant la mariée</text></svg>'">
-                    <div class="gallery-overlay">
-                        <h3>Moments Fun</h3>
-                        <p>Complicité entre amis</p>
-                    </div>
-                </div>
-
-                <!-- Photo 12 - Image 12 -->
-                <div class="gallery-item" onclick="openLightbox(11)">
-                    <img src="images/gallery/image12.jpg" alt="Portrait de famille"
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%23a89466\' width=\'400\' height=\'300\'/><text x=\'50%\' y=\'45%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Portrait de famille</text><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Générations réunies</text></svg>'">
-                    <div class="gallery-overlay">
-                        <h3>Famille</h3>
-                        <p>Générations réunies</p>
-                    </div>
-                </div>
-
-                <!-- Photo 13 - Image 13 -->
-                <div class="gallery-item" onclick="openLightbox(12)">
-                    <img src="images/gallery/image13.jpg" alt="Dame avec chapeau bleu"
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%23d4b87a\' width=\'400\' height=\'300\'/><text x=\'50%\' y=\'45%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Dame avec chapeau</text><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Élégance vintage</text></svg>'">
-                    <div class="gallery-overlay">
-                        <h3>Élégance</h3>
-                        <p>Style vintage</p>
                     </div>
                 </div>
             </div>
@@ -169,28 +449,33 @@
             <img class="lightbox-image" id="lightbox-image" src="" alt="">
         </div>
         <button class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1)">›</button>
-        <div class="lightbox-counter" id="lightbox-counter">1 / 13</div>
+        <div class="lightbox-counter" id="lightbox-counter">1 / 9</div>
     </div>
 
     <script>
         // Données des images pour la lightbox
         const galleryImages = [
-            "images/gallery/image1.jpg",
-            "images/gallery/image2.jpg", 
-            "images/gallery/image3.jpg",
-            "images/gallery/image4.jpg",
-            "images/gallery/image5.jpg",
-            "images/gallery/image6.jpg",
-            "images/gallery/image7.jpg",
-            "images/gallery/image8.jpg",
-            "images/gallery/image9.jpg",
-            "images/gallery/image10.jpg",
-            "images/gallery/image11.jpg",
-            "images/gallery/image12.jpg",
-            "images/gallery/image13.jpg"
+            "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1529636798458-92182e662485?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1594736797933-d0b22b91b1f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
         ];
 
         let currentImageIndex = 0;
+
+        // Menu mobile
+        function toggleMobileMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            navMenu.classList.toggle('mobile-active');
+            menuToggle.classList.toggle('active');
+        }
 
         // Lightbox functions
         function openLightbox(index) {
@@ -265,6 +550,18 @@
 
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
+        });
+
+        // Effet navbar au scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.nav-horizontal');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
         });
     </script>
 </body>
