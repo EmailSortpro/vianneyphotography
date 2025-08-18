@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Vianney Hastings Photography</title>
-    <meta name="description" content="Découvrez mon portfolio de photographies de mariages, événements et portraits. Galerie interactive avec navigation.">
+    <meta name="description" content="Découvrez le portfolio de Vianney Hastings : mariages, événements et portraits. Photographies professionnelles en région parisienne.">
     <link rel="canonical" href="https://superb-melba-5f704d.netlify.app/portfolio.html">
     <style>
         * {
@@ -119,12 +119,33 @@
             color: var(--primary);
         }
 
+        /* Page Portfolio */
+        .portfolio-page {
+            background: var(--white);
+        }
+
+        .portfolio-intro {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+
+        .portfolio-intro p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
         /* Galerie photos */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
             margin-top: 50px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .gallery-item {
@@ -311,20 +332,20 @@
                 padding: 40px 20px;
             }
 
-            .nav-container {
-                padding: 0 20px;
-            }
-
-            .main-content {
-                margin-top: 70px;
-            }
-
             .lightbox-prev {
                 left: 10px;
             }
 
             .lightbox-next {
                 right: 10px;
+            }
+
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .main-content {
+                margin-top: 70px;
             }
         }
     </style>
@@ -355,134 +376,88 @@
         <!-- Page Portfolio -->
         <div class="page portfolio-page">
             <h2 class="section-title">Portfolio</h2>
+            <div class="portfolio-intro fade-in">
+                <p>Découvrez une sélection de mes plus belles réalisations : mariages, événements et portraits. Chaque image raconte une histoire unique et capture l'émotion de l'instant.</p>
+            </div>
+
             <div class="gallery-grid fade-in">
-                <!-- Photo 1 - Couple souriant lors de la cérémonie (Image 1) -->
                 <div class="gallery-item" onclick="openLightbox(0)">
-                    <img src="images/image1.jpg" alt="Couple souriant lors de la cérémonie" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
+                    <img src="https://raw.githubusercontent.com/vianneyh/photos/main/DSC04004.jpg" 
+                         alt="Photographie de mariage" 
+                         loading="lazy">
                     <div class="gallery-overlay">
-                        <h3>Cérémonie Civile</h3>
-                        <p>Moments d'émotion pure</p>
+                        <h3>Mariage Élégant</h3>
+                        <p>Cérémonie intime en Île-de-France</p>
                     </div>
                 </div>
 
-                <!-- Photo 2 - Baiser tendre en extérieur (Image 2) -->
                 <div class="gallery-item" onclick="openLightbox(1)">
-                    <img src="images/image2.jpg" alt="Baiser tendre en extérieur" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
+                    <img src="https://raw.githubusercontent.com/vianneyh/photos/main/DSC03817.jpg" 
+                         alt="Portrait couple" 
+                         loading="lazy">
                     <div class="gallery-overlay">
-                        <h3>Séance Couple</h3>
-                        <p>Intimité et complicité</p>
+                        <h3>Portrait de Couple</h3>
+                        <p>Séance engagement en extérieur</p>
                     </div>
                 </div>
 
-                <!-- Photo 3 - Première danse des mariés (Image 3) -->
                 <div class="gallery-item" onclick="openLightbox(2)">
-                    <img src="images/image3.jpg" alt="Première danse des mariés" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
+                    <img src="https://raw.githubusercontent.com/vianneyh/photos/main/DSC04765.jpg" 
+                         alt="Événement professionnel" 
+                         loading="lazy">
                     <div class="gallery-overlay">
-                        <h3>Ouverture de Bal</h3>
-                        <p>Premier pas vers l'avenir</p>
+                        <h3>Événement Corporate</h3>
+                        <p>Soirée d'entreprise prestigieuse</p>
                     </div>
                 </div>
 
-                <!-- Photo 4 - Invités dansant à la soirée (Image 4) -->
                 <div class="gallery-item" onclick="openLightbox(3)">
-                    <img src="images/image4.jpg" alt="Invités dansant à la soirée" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
+                    <img src="https://raw.githubusercontent.com/vianneyh/photos/main/DSC05172.jpg" 
+                         alt="Cérémonie de mariage" 
+                         loading="lazy">
                     <div class="gallery-overlay">
-                        <h3>Soirée Dansante</h3>
-                        <p>Joie partagée</p>
+                        <h3>Cérémonie Romantique</h3>
+                        <p>Échange des vœux au coucher du soleil</p>
                     </div>
                 </div>
 
-                <!-- Photo 5 - Portrait invité souriant (Image 5) -->
                 <div class="gallery-item" onclick="openLightbox(4)">
-                    <img src="images/image5.jpg" alt="Portrait invité souriant" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
+                    <img src="https://raw.githubusercontent.com/vianneyh/photos/main/DSC00031.jpg" 
+                         alt="Portrait artistique" 
+                         loading="lazy">
                     <div class="gallery-overlay">
-                        <h3>Portraits d'Invités</h3>
-                        <p>Expressions authentiques</p>
+                        <h3>Portrait Artistique</h3>
+                        <p>Jeu de lumières naturelles</p>
                     </div>
                 </div>
 
-                <!-- Photo 6 - Ballon 2025 (Image 6) -->
                 <div class="gallery-item" onclick="openLightbox(5)">
-                    <img src="images/image6.jpg" alt="Décoration 2025 - Soirée festive" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
+                    <img src="https://raw.githubusercontent.com/vianneyh/photos/main/DSC00018%20(1).jpg" 
+                         alt="Moment de complicité" 
+                         loading="lazy">
                     <div class="gallery-overlay">
-                        <h3>Décoration 2025</h3>
-                        <p>Détails créatifs</p>
+                        <h3>Complicité</h3>
+                        <p>Instant de tendresse capturé</p>
                     </div>
                 </div>
 
-                <!-- Photo 7 - Réception sur bateau (Image 7) -->
                 <div class="gallery-item" onclick="openLightbox(6)">
-                    <img src="images/image7.jpg" alt="Réception sur bateau" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1529636798458-92182e662485?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
+                    <img src="https://raw.githubusercontent.com/vianneyh/photos/main/DSC00053.jpg" 
+                         alt="Réception de mariage" 
+                         loading="lazy">
                     <div class="gallery-overlay">
-                        <h3>Mariage sur l'Eau</h3>
-                        <p>Cadre exceptionnel</p>
+                        <h3>Réception Festive</h3>
+                        <p>Ambiance chaleureuse et conviviale</p>
                     </div>
                 </div>
 
-                <!-- Photo 8 - Mariée et sa mère (Image 8) -->
                 <div class="gallery-item" onclick="openLightbox(7)">
-                    <img src="images/image8.jpg" alt="Mariée et sa mère - Complicité familiale" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
+                    <img src="https://raw.githubusercontent.com/vianneyh/photos/main/DSC03817.jpg" 
+                         alt="Détails de mariage" 
+                         loading="lazy">
                     <div class="gallery-overlay">
-                        <h3>Famille</h3>
-                        <p>Liens précieux</p>
-                    </div>
-                </div>
-
-                <!-- Photo 9 - Portrait invitée élégante (Image 9) -->
-                <div class="gallery-item" onclick="openLightbox(8)">
-                    <img src="images/image9.jpg" alt="Portrait invitée élégante" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1594736797933-d0b22b91b1f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
-                    <div class="gallery-overlay">
-                        <h3>Élégance</h3>
-                        <p>Style raffiné</p>
-                    </div>
-                </div>
-
-                <!-- Photo 10 - Portrait invitée souriante (Image 10) -->
-                <div class="gallery-item" onclick="openLightbox(9)">
-                    <img src="images/image10.jpg" alt="Portrait invitée souriante" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1594736797933-d0b22b91b1f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
-                    <div class="gallery-overlay">
-                        <h3>Portraits</h3>
-                        <p>Naturel et authentique</p>
-                    </div>
-                </div>
-
-                <!-- Photo 11 - Invitée avec chapeau bleu (Image 11) -->
-                <div class="gallery-item" onclick="openLightbox(10)">
-                    <img src="images/image11.jpg" alt="Invitée avec chapeau bleu" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1594736797933-d0b22b91b1f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
-                    <div class="gallery-overlay">
-                        <h3>Élégance</h3>
-                        <p>Style vintage</p>
-                    </div>
-                </div>
-
-                <!-- Photo 12 - Groupe d'amis portant la mariée (Image 12) -->
-                <div class="gallery-item" onclick="openLightbox(11)">
-                    <img src="images/image12.jpg" alt="Groupe d'amis portant la mariée" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
-                    <div class="gallery-overlay">
-                        <h3>Moments Fun</h3>
-                        <p>Complicité entre amis</p>
-                    </div>
-                </div>
-
-                <!-- Photo 13 - Portrait de famille (Image 13) -->
-                <div class="gallery-item" onclick="openLightbox(12)">
-                    <img src="images/image13.jpg" alt="Portrait de famille" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
-                    <div class="gallery-overlay">
-                        <h3>Famille</h3>
-                        <p>Générations réunies</p>
+                        <h3>Détails Précieux</h3>
+                        <p>L'art de sublimer les petites choses</p>
                     </div>
                 </div>
             </div>
@@ -490,32 +465,51 @@
     </div>
 
     <!-- Lightbox Modal -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" onclick="closeLightbox()">×</button>
-        <button class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1)">‹</button>
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
         <div class="lightbox-content">
             <img class="lightbox-image" id="lightbox-image" src="" alt="">
+            <button class="lightbox-nav lightbox-prev" onclick="prevImage()">‹</button>
+            <button class="lightbox-nav lightbox-next" onclick="nextImage()">›</button>
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <div class="lightbox-counter" id="lightbox-counter"></div>
         </div>
-        <button class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1)">›</button>
-        <div class="lightbox-counter" id="lightbox-counter">1 / 13</div>
     </div>
 
     <script>
-        // Données des images pour la lightbox - VOS VRAIES PHOTOS
-        const galleryImages = [
-            "images/image1.jpg",  // Couple souriant lors de la cérémonie
-            "images/image2.jpg",  // Baiser tendre en extérieur  
-            "images/image3.jpg",  // Première danse des mariés
-            "images/image4.jpg",  // Invités dansant à la soirée
-            "images/image5.jpg",  // Portrait invité souriant
-            "images/image6.jpg",  // Ballon 2025 - Soirée festive
-            "images/image7.jpg",  // Réception sur bateau
-            "images/image8.jpg",  // Mariée et sa mère
-            "images/image9.jpg",  // Portrait invitée élégante
-            "images/image10.jpg", // Portrait invitée souriante
-            "images/image11.jpg", // Invitée avec chapeau bleu
-            "images/image12.jpg", // Groupe d'amis portant la mariée
-            "images/image13.jpg"  // Portrait de famille
+        // Images pour la lightbox
+        const images = [
+            {
+                src: 'https://raw.githubusercontent.com/vianneyh/photos/main/DSC04004.jpg',
+                title: 'Mariage Élégant'
+            },
+            {
+                src: 'https://raw.githubusercontent.com/vianneyh/photos/main/DSC03817.jpg',
+                title: 'Portrait de Couple'
+            },
+            {
+                src: 'https://raw.githubusercontent.com/vianneyh/photos/main/DSC04765.jpg',
+                title: 'Événement Corporate'
+            },
+            {
+                src: 'https://raw.githubusercontent.com/vianneyh/photos/main/DSC05172.jpg',
+                title: 'Cérémonie Romantique'
+            },
+            {
+                src: 'https://raw.githubusercontent.com/vianneyh/photos/main/DSC00031.jpg',
+                title: 'Portrait Artistique'
+            },
+            {
+                src: 'https://raw.githubusercontent.com/vianneyh/photos/main/DSC00018%20(1).jpg',
+                title: 'Complicité'
+            },
+            {
+                src: 'https://raw.githubusercontent.com/vianneyh/photos/main/DSC00053.jpg',
+                title: 'Réception Festive'
+            },
+            {
+                src: 'https://raw.githubusercontent.com/vianneyh/photos/main/DSC03817.jpg',
+                title: 'Détails Précieux'
+            }
         ];
 
         let currentImageIndex = 0;
@@ -532,57 +526,42 @@
         // Lightbox functions
         function openLightbox(index) {
             currentImageIndex = index;
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImage = document.getElementById('lightbox-image');
-            const counter = document.getElementById('lightbox-counter');
-            
-            lightboxImage.src = galleryImages[index];
-            counter.textContent = `${index + 1} / ${galleryImages.length}`;
-            
-            lightbox.classList.add('active');
+            updateLightboxImage();
+            document.getElementById('lightbox').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
+        function closeLightbox(event) {
+            if (event && event.target !== event.currentTarget) return;
+            document.getElementById('lightbox').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        function changeLightboxImage(direction) {
-            currentImageIndex += direction;
-            
-            if (currentImageIndex >= galleryImages.length) {
-                currentImageIndex = 0;
-            } else if (currentImageIndex < 0) {
-                currentImageIndex = galleryImages.length - 1;
-            }
-            
-            const lightboxImage = document.getElementById('lightbox-image');
-            const counter = document.getElementById('lightbox-counter');
-            
-            lightboxImage.src = galleryImages[currentImageIndex];
-            counter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            updateLightboxImage();
         }
 
-        // Keyboard navigation for lightbox
-        document.addEventListener('keydown', function(e) {
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox.classList.contains('active')) {
-                if (e.key === 'Escape') {
-                    closeLightbox();
-                } else if (e.key === 'ArrowLeft') {
-                    changeLightboxImage(-1);
-                } else if (e.key === 'ArrowRight') {
-                    changeLightboxImage(1);
-                }
-            }
-        });
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            updateLightboxImage();
+        }
 
-        // Close lightbox when clicking outside image
-        document.getElementById('lightbox').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeLightbox();
+        function updateLightboxImage() {
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxCounter = document.getElementById('lightbox-counter');
+            
+            lightboxImage.src = images[currentImageIndex].src;
+            lightboxImage.alt = images[currentImageIndex].title;
+            lightboxCounter.textContent = `${currentImageIndex + 1} / ${images.length}`;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'Escape') closeLightbox();
             }
         });
 
