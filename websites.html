@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Création de Sites Web - Vianney Hastings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation horizontale en haut -->
+    <nav class="nav-horizontal">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Vianney Hastings</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="websites.html" class="active">Sites Web</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="main-content">
+        <!-- Page Sites Web -->
+        <div class="page websites-page">
+            <h2 class="section-title">Création de Sites Web</h2>
+            <div class="websites-intro fade-in">
+                <p>En plus de ma passion pour la photographie, je crée des sites web modernes et élégants pour les professionnels, artistes et entreprises qui souhaitent marquer leur différence en ligne.</p>
+                <p>Design sur-mesure, responsive et optimisé pour le référencement, chaque projet est unique et adapté à vos besoins spécifiques.</p>
+            </div>
+            <div class="websites-grid fade-in">
+                <div class="website-card">
+                    <div class="website-preview">
+                        Site E-commerce Mode
+                    </div>
+                    <div class="website-info">
+                        <h3>Boutique en ligne</h3>
+                        <p>Site e-commerce responsive avec système de paiement intégré, gestion des stocks et interface d'administration complète.</p>
+                        <a href="#" class="website-link">Voir le projet →</a>
+                    </div>
+                </div>
+
+                <div class="website-card">
+                    <div class="website-preview">
+                        Portfolio Artiste
+                    </div>
+                    <div class="website-info">
+                        <h3>Portfolio créatif</h3>
+                        <p>Site vitrine élégant pour un artiste peintre avec galerie interactive et formulaire de contact personnalisé.</p>
+                        <a href="#" class="website-link">Voir le projet →</a>
+                    </div>
+                </div>
+
+                <div class="website-card">
+                    <div class="website-preview">
+                        Site Restaurant
+                    </div>
+                    <div class="website-info">
+                        <h3>Restaurant gastronomique</h3>
+                        <p>Site avec réservation en ligne, menu dynamique et intégration réseaux sociaux pour optimiser la visibilité.</p>
+                        <a href="#" class="website-link">Voir le projet →</a>
+                    </div>
+                </div>
+
+                <div class="website-card">
+                    <div class="website-preview">
+                        Application Mobile
+                    </div>
+                    <div class="website-info">
+                        <h3>App mobile fitness</h3>
+                        <p>Application responsive pour coach sportif avec système d'abonnement et suivi client personnalisé.</p>
+                        <a href="#" class="website-link">Voir le projet →</a>
+                    </div>
+                </div>
+
+                <div class="website-card">
+                    <div class="website-preview">
+                        Site Corporate
+                    </div>
+                    <div class="website-info">
+                        <h3>Entreprise de conseil</h3>
+                        <p>Site institutionnel avec présentation des services, équipe et témoignages clients. Design professionnel et moderne.</p>
+                        <a href="#" class="website-link">Voir le projet →</a>
+                    </div>
+                </div>
+
+                <div class="website-card">
+                    <div class="website-preview">
+                        Blog Personnel
+                    </div>
+                    <div class="website-info">
+                        <h3>Blog lifestyle</h3>
+                        <p>Plateforme de blog avec système de gestion de contenu, commentaires et newsletter intégrée.</p>
+                        <a href="#" class="website-link">Voir le projet →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
