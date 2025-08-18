@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - Vianney Hastings Photography</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation horizontale en haut -->
+    <nav class="nav-horizontal">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Vianney Hastings</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="about.html" class="active">À propos</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="websites.html">Sites Web</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="main-content">
+        <!-- Page À propos -->
+        <div class="page about-page">
+            <h2 class="section-title">À propos</h2>
+            <div class="about-content fade-in">
+                <div class="about-text">
+                    <p>Vianney, 30 ans, photographe de passion, originaire de Nantes, j'ai beaucoup voyagé entre l'Amérique du sud, l'Asie et le Royaume-Uni où j'ai résidé pendant 5 ans.</p>
+                    <p>Mon goût pour le voyage m'a donné cette passion pour la photographie que j'ai envie de partager aujourd'hui. J'ai hâte de pouvoir échanger avec vous et de vous accompagner sur chacun de vos projets : portraits, évènements privés et professionnels.</p>
+                </div>
+                
+                <!-- Photo portrait en noir et blanc -->
+                <div class="about-image">
+                    <img src="images/portrait-vianney.jpg" alt="Portrait de Vianney Hastings" 
+                         onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 500 600\'><rect fill=\'%23a89466\' width=\'500\' height=\'600\'/><text x=\'50%\' y=\'45%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'18\' font-family=\'Arial\'>Portrait N&B</text><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\' font-family=\'Arial\'>Vianney Hastings</text></svg>'">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
