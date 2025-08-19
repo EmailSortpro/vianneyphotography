@@ -7,7 +7,6 @@
     <meta name="description" content="Découvrez le parcours de Vianney Hastings, photographe passionné originaire de Nantes, spécialisé dans les mariages et événements.">
     <link rel="canonical" href="https://superb-melba-5f704d.netlify.app/about.html">
     <style>
-        /* Import du CSS principal */
         * {
             margin: 0;
             padding: 0;
@@ -45,6 +44,7 @@
             border-bottom: 1px solid #eee;
             z-index: 1000;
             padding: 20px 0;
+            transition: all 0.3s ease;
         }
 
         .nav-container {
@@ -102,6 +102,18 @@
             transition: all 0.3s ease;
         }
 
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
         .main-content {
             margin-top: 80px;
             min-height: 100vh;
@@ -120,7 +132,6 @@
             color: var(--primary);
         }
 
-        /* Page À propos */
         .about-page {
             background: var(--secondary);
         }
@@ -164,18 +175,6 @@
             filter: grayscale(0%);
         }
 
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Stats section */
         .stats-section {
             background: var(--white);
             padding: 80px 60px;
@@ -235,6 +234,15 @@
                 left: 0;
             }
 
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+            
+            .nav-menu a {
+                font-size: 1.1rem;
+                padding: 12px 24px;
+            }
+
             .about-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -280,7 +288,7 @@
                 <li><a href="websites.html">Sites Web</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <div class="menu-toggle" onclick="toggleMobileMenu()">
+            <div class="menu-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -290,16 +298,14 @@
 
     <!-- Contenu principal -->
     <div class="main-content">
-        <!-- Page À propos -->
         <div class="page about-page">
             <h2 class="section-title">À propos</h2>
-            <div class="about-content fade-in">
+            <div class="about-content">
                 <div class="about-text">
                     <p>Vianney, 30 ans, photographe de passion, originaire de Nantes, j'ai beaucoup voyagé entre l'Amérique du sud, l'Asie et le Royaume-Uni où j'ai résidé pendant 5 ans.</p>
                     <p>Mon goût pour le voyage m'a donné cette passion pour la photographie que j'ai envie de partager aujourd'hui. J'ai hâte de pouvoir échanger avec vous et de vous accompagner sur chacun de vos projets : portraits, évènements privés et professionnels.</p>
                 </div>
                 
-                <!-- Photo portrait de Vianney -->
                 <div class="about-image">
                     <img src="https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/Vianney.jpg" 
                          alt="Portrait de Vianney Hastings" 
@@ -308,8 +314,7 @@
             </div>
         </div>
 
-        <!-- Section statistiques -->
-        <div class="stats-section fade-in">
+        <div class="stats-section">
             <h3 style="text-align: center; margin-bottom: 60px; font-size: 2rem; font-weight: 300; color: var(--primary);">Mon expérience en chiffres</h3>
             <div class="stats-grid">
                 <div class="stat-item">
@@ -334,30 +339,20 @@
 
     <script>
         // Menu mobile
-        function toggleMobileMenu() {
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
             const navMenu = document.querySelector('.nav-menu');
-            const menuToggle = document.querySelector('.menu-toggle');
+            const menuToggle = this;
             
             navMenu.classList.toggle('mobile-active');
             menuToggle.classList.toggle('active');
-        }
+        });
 
-        // Animation au scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+        // Fermer le menu mobile au clic sur un lien
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-menu').classList.remove('mobile-active');
+                document.querySelector('.menu-toggle').classList.remove('active');
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
         });
 
         // Effet navbar au scroll
