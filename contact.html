@@ -44,6 +44,7 @@
             border-bottom: 1px solid #eee;
             z-index: 1000;
             padding: 20px 0;
+            transition: all 0.3s ease;
         }
 
         .nav-container {
@@ -101,6 +102,18 @@
             transition: all 0.3s ease;
         }
 
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
         .main-content {
             margin-top: 80px;
             min-height: 100vh;
@@ -119,7 +132,6 @@
             color: var(--primary);
         }
 
-        /* Page Contact */
         .contact-page {
             background: var(--white);
         }
@@ -227,17 +239,6 @@
             transform: none;
         }
 
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         .success-message {
             background: #4CAF50;
             color: white;
@@ -282,6 +283,15 @@
                 left: 0;
             }
 
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+            
+            .nav-menu a {
+                font-size: 1.1rem;
+                padding: 12px 24px;
+            }
+
             .contact-container {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -314,7 +324,7 @@
                 <li><a href="websites.html">Sites Web</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
-            <div class="menu-toggle" onclick="toggleMobileMenu()">
+            <div class="menu-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -324,10 +334,9 @@
 
     <!-- Contenu principal -->
     <div class="main-content">
-        <!-- Page Contact -->
         <div class="page contact-page">
             <h2 class="section-title">Contact</h2>
-            <div class="contact-container fade-in">
+            <div class="contact-container">
                 <div class="contact-info">
                     <h3>Parlons de votre projet</h3>
                     <div class="contact-item">
@@ -418,15 +427,23 @@
 
     <script>
         // Menu mobile
-        function toggleMobileMenu() {
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
             const navMenu = document.querySelector('.nav-menu');
-            const menuToggle = document.querySelector('.menu-toggle');
+            const menuToggle = this;
             
             navMenu.classList.toggle('mobile-active');
             menuToggle.classList.toggle('active');
-        }
+        });
 
-        // Gestion du formulaire Netlify
+        // Fermer le menu mobile au clic sur un lien
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-menu').classList.remove('mobile-active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            });
+        });
+
+        // Gestion du formulaire
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -435,31 +452,25 @@
             const successMessage = document.getElementById('successMessage');
             const errorMessage = document.getElementById('errorMessage');
             
-            // Cacher les messages précédents
             successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
             
-            // Animation du bouton
             btn.textContent = 'Envoi en cours...';
             btn.disabled = true;
             
-            // Préparer les données du formulaire
             const formData = new FormData(this);
             
-            // Envoyer à Netlify
             fetch('/', {
                 method: 'POST',
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: new URLSearchParams(formData).toString()
             })
             .then(() => {
-                // Succès
                 btn.textContent = 'Message envoyé !';
                 btn.style.background = '#4CAF50';
                 successMessage.style.display = 'block';
                 this.reset();
                 
-                // Reset après 3 secondes
                 setTimeout(() => {
                     btn.textContent = originalText;
                     btn.style.background = 'var(--accent)';
@@ -467,13 +478,11 @@
                 }, 3000);
             })
             .catch(() => {
-                // Erreur
                 btn.textContent = 'Erreur - Réessayer';
                 btn.style.background = '#f44336';
                 errorMessage.style.display = 'block';
                 btn.disabled = false;
                 
-                // Reset après 3 secondes
                 setTimeout(() => {
                     btn.textContent = originalText;
                     btn.style.background = 'var(--accent)';
@@ -481,7 +490,7 @@
             });
         });
 
-        // Validation en temps réel
+        // Validation email
         document.getElementById('email').addEventListener('blur', function() {
             const email = this.value;
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -495,31 +504,13 @@
             }
         });
 
-        // Format automatique du téléphone
+        // Format téléphone
         document.getElementById('telephone').addEventListener('input', function() {
             let value = this.value.replace(/\D/g, '');
             if (value.length >= 2) {
                 value = value.replace(/(\d{2})(?=\d)/g, '$1 ');
             }
             this.value = value;
-        });
-
-        // Animation au scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
         });
 
         // Effet navbar au scroll
