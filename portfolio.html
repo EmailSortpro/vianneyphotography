@@ -453,7 +453,8 @@
                          alt="Mariage Ele et PE" 
                          loading="lazy">
                 </div>
-                    <div class="gallery-item" onclick="openLightbox(11)">
+                
+                <div class="gallery-item" onclick="openLightbox(11)">
                     <img src="https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/DSC00031.jpg" 
                          alt="Mariage Ele et PE" 
                          loading="lazy">
@@ -474,11 +475,11 @@
     </div>
 
     <script>
-        // Images pour la lightbox
+        // Images pour la lightbox - CORRIGÉ : correspond exactement aux images de la galerie
         const images = [
             'https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/DSC05172.jpg',
             'https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/DSC00053.jpg',
-            'https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/PE%20and%20ELE.jpg',
+            'https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/PEandELE.jpg', // CORRIGÉ: était "PE%20and%20ELE.jpg"
             'https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/DSC04038.jpg',
             'https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/DSC04004.jpg',
             'https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/DSC03817.jpg',
@@ -486,7 +487,8 @@
             'https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/DSC04765.jpg',
             'https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/DSC05198.jpg',
             'https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/DSC00053.jpg',
-            'https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/Wedding%20Ele%20and%20PE%20(3).jpg'
+            'https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/Wedding%20Ele%20and%20PE%20(3).jpg',
+            'https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/DSC00031.jpg' // AJOUTÉ: manquait dans l'array
         ];
 
         let currentImageIndex = 0;
