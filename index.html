@@ -43,44 +43,46 @@
             backdrop-filter: blur(10px);
             border-bottom: 1px solid #eee;
             z-index: 1000;
-            padding: 20px 0;
+            padding: 15px 0;
             transition: all 0.3s ease;
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 40px;
+            padding: 0 20px;
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 500;
             color: var(--primary);
             text-decoration: none;
             cursor: pointer;
+            white-space: nowrap;
         }
 
         .nav-menu {
             list-style: none;
             display: flex;
-            gap: 2.5rem;
+            gap: 1.5rem;
         }
 
         .nav-menu a {
             color: var(--primary);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 400;
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 20px;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             cursor: pointer;
+            white-space: nowrap;
         }
 
         .nav-menu a:hover,
@@ -127,7 +129,7 @@
             display: block;
         }
 
-        /* Hero fullscreen */
+        /* Hero fullscreen avec titre */
         .home-page {
             position: relative;
             width: 100%;
@@ -187,6 +189,27 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
+        .cta-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: var(--accent);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1.5s ease-out 0.9s both;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -198,7 +221,7 @@
             }
         }
 
-        /* Gallery Pages */
+        /* Gallery Pages - CARRÉS */
         .gallery-page {
             padding-top: 100px;
             padding-bottom: 60px;
@@ -222,15 +245,16 @@
         .gallery-subtitle {
             font-size: 1.2rem;
             color: var(--text-light);
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             line-height: 1.8;
         }
 
+        /* Grille de galerie avec photos CARRÉES */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
             padding: 0 40px;
             max-width: 1400px;
             margin: 0 auto;
@@ -240,15 +264,16 @@
             position: relative;
             overflow: hidden;
             background: var(--white);
-            border-radius: 8px;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            aspect-ratio: 3/4;
+            aspect-ratio: 1;  /* CARRÉ */
+            border-radius: 0;
         }
 
         .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            z-index: 10;
         }
 
         .gallery-item img {
@@ -259,10 +284,10 @@
         }
 
         .gallery-item:hover img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
-        /* Lightbox */
+        /* Lightbox avec navigation */
         .lightbox {
             display: none;
             position: fixed;
@@ -284,11 +309,14 @@
             max-width: 90%;
             max-height: 90%;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .lightbox img {
-            width: 100%;
-            height: 100%;
+            max-width: 100%;
+            max-height: 90vh;
             object-fit: contain;
         }
 
@@ -300,6 +328,91 @@
             color: var(--white);
             cursor: pointer;
             z-index: 2001;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.2);
+        }
+
+        /* Navigation dans la lightbox */
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            color: var(--white);
+            cursor: pointer;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            transition: background 0.3s ease;
+            user-select: none;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(0,0,0,0.6);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            font-size: 1rem;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        /* Page Mariage détaillée */
+        .wedding-intro {
+            background: var(--white);
+            padding: 60px 40px;
+            margin-bottom: 40px;
+        }
+
+        .wedding-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .wedding-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .wedding-service {
+            padding: 30px;
+            background: var(--secondary);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .wedding-service:hover {
+            transform: translateY(-5px);
+        }
+
+        .wedding-service h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .wedding-service p {
+            color: var(--text-light);
+            line-height: 1.6;
         }
 
         /* About Page */
@@ -525,6 +638,17 @@
         }
 
         /* Responsive */
+        @media (max-width: 1200px) {
+            .nav-menu {
+                gap: 1rem;
+            }
+            
+            .nav-menu a {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
+        }
+
         @media (max-width: 968px) {
             .menu-toggle {
                 display: flex;
@@ -532,10 +656,10 @@
             
             .nav-menu {
                 position: fixed;
-                top: 80px;
+                top: 70px;
                 left: -100%;
                 width: 100%;
-                height: calc(100vh - 80px);
+                height: calc(100vh - 70px);
                 background: var(--white);
                 flex-direction: column;
                 justify-content: start;
@@ -555,8 +679,9 @@
             }
 
             .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 padding: 0 20px;
+                gap: 10px;
             }
 
             .about-content,
@@ -567,6 +692,10 @@
             .process-steps {
                 grid-template-columns: 1fr;
             }
+
+            .wedding-services {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -575,7 +704,7 @@
             }
             
             .gallery-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -609,6 +738,7 @@
         <div class="hero-content">
             <h1>Vianney Hastings</h1>
             <p class="subtitle">Photographe Mariages, Événements, Portraits</p>
+            <a class="cta-button" onclick="showPage('portrait')">Découvrir mon travail</a>
         </div>
     </div>
 
@@ -616,7 +746,7 @@
     <div id="portrait" class="page gallery-page">
         <div class="gallery-header">
             <h2 class="gallery-title">Portraits</h2>
-            <p class="gallery-subtitle">Capturer l'essence de chaque personnalité dans des portraits authentiques et naturels</p>
+            <p class="gallery-subtitle">Capturer l'essence de chaque personnalité dans des portraits authentiques et naturels. Séances en studio ou en extérieur, pour révéler votre vraie nature.</p>
         </div>
         <div id="portrait-gallery" class="gallery-grid">
             <div class="loading">Chargement des images...</div>
@@ -625,9 +755,38 @@
 
     <!-- Page Mariage -->
     <div id="mariage" class="page gallery-page">
+        <div class="wedding-intro">
+            <div class="wedding-content">
+                <h2 style="font-size: 3rem; font-weight: 300; color: var(--primary); margin-bottom: 30px;">Mariages</h2>
+                <p style="font-size: 1.2rem; color: var(--text-light); line-height: 1.8; margin-bottom: 40px;">
+                    Votre mariage est unique, et chaque instant mérite d'être immortalisé avec élégance. 
+                    Je capture l'authenticité de vos émotions et la beauté de votre célébration, 
+                    créant des souvenirs qui traverseront les générations.
+                </p>
+                
+                <div class="wedding-services">
+                    <div class="wedding-service">
+                        <h3>Préparatifs</h3>
+                        <p>Les moments intimes de préparation, l'émotion des premiers regards, les détails soigneusement choisis.</p>
+                    </div>
+                    <div class="wedding-service">
+                        <h3>Cérémonie</h3>
+                        <p>L'échange des vœux, les larmes de joie, les sourires complices, capturés avec discrétion et sensibilité.</p>
+                    </div>
+                    <div class="wedding-service">
+                        <h3>Réception</h3>
+                        <p>L'ambiance festive, les rires, la danse, tous les moments spontanés qui font la magie de votre soirée.</p>
+                    </div>
+                    <div class="wedding-service">
+                        <h3>Couple</h3>
+                        <p>Des portraits romantiques dans des décors choisis, pour sublimer votre amour dans des images intemporelles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <div class="gallery-header">
-            <h2 class="gallery-title">Mariages</h2>
-            <p class="gallery-subtitle">Des moments uniques immortalisés avec élégance et émotion</p>
+            <p class="gallery-subtitle">Découvrez une sélection de mes plus beaux mariages</p>
         </div>
         <div id="wedding-gallery" class="gallery-grid">
             <div class="loading">Chargement des images...</div>
@@ -638,7 +797,7 @@
     <div id="reportage" class="page gallery-page">
         <div class="gallery-header">
             <h2 class="gallery-title">Reportages & Architecture</h2>
-            <p class="gallery-subtitle">Raconter des histoires à travers l'objectif, capturer l'essence des lieux et des moments</p>
+            <p class="gallery-subtitle">Raconter des histoires à travers l'objectif, capturer l'essence des lieux et des moments. De l'architecture moderne aux scènes de vie, chaque image raconte une histoire unique.</p>
         </div>
         <div id="reportage-gallery" class="gallery-grid">
             <div class="loading">Chargement des images...</div>
@@ -651,7 +810,8 @@
             <div class="web-services-header">
                 <h2 class="web-services-title">Création de Sites Web</h2>
                 <p class="web-services-intro">
-                    En complément de mes services photographiques, je propose la création de sites web personnalisés pour vos mariages et événements. Une présence digitale élégante pour accompagner vos moments précieux.
+                    En complément de mes services photographiques, je propose la création de sites web personnalisés pour vos mariages et événements. 
+                    Une présence digitale élégante pour accompagner vos moments précieux, avec possibilité d'intégrer une prestation photo sur site.
                 </p>
             </div>
 
@@ -660,7 +820,9 @@
                     <div class="step-number">1</div>
                     <h3 class="step-title">🔍 Qualification du besoin</h3>
                     <p class="step-description">
-                        Entretien initial pour comprendre vos objectifs. Analyse du secteur, des concurrents et des attentes visuelles pour créer un site qui vous ressemble.
+                        Entretien initial approfondi pour comprendre vos objectifs et votre vision. 
+                        Analyse du secteur, étude des concurrents et définition des attentes visuelles 
+                        pour créer un site qui vous ressemble vraiment.
                     </p>
                 </div>
 
@@ -668,7 +830,9 @@
                     <div class="step-number">2</div>
                     <h3 class="step-title">🧭 Définition du périmètre</h3>
                     <p class="step-description">
-                        Choix des fonctionnalités (galerie, formulaire, blog). Sélection des technologies adaptées. Prestation photo sur site possible selon vos besoins.
+                        Choix des fonctionnalités essentielles : galerie photo, formulaire RSVP, blog, carte interactive. 
+                        Sélection des technologies adaptées et du type d'hébergement. 
+                        Possibilité d'inclure une prestation photo professionnelle sur site.
                     </p>
                 </div>
 
@@ -676,7 +840,9 @@
                     <div class="step-number">3</div>
                     <h3 class="step-title">🛠️ Création et validation</h3>
                     <p class="step-description">
-                        Développement en environnement de test. Recette fonctionnelle et visuelle ensemble. Validation finale avant la mise en ligne de votre site.
+                        Développement du site en environnement de test avec révisions régulières. 
+                        Recette fonctionnelle et visuelle ensemble pour garantir votre satisfaction. 
+                        Tests sur tous les appareils avant validation finale et mise en ligne.
                     </p>
                 </div>
 
@@ -684,7 +850,9 @@
                     <div class="step-number">4</div>
                     <h3 class="step-title">🔄 Évolutions post-livraison</h3>
                     <p class="step-description">
-                        Retouches mineures après publication. Forfaits de maintenance disponibles. Accompagnement pour faire évoluer votre site dans le temps.
+                        Possibilité de retouches mineures après publication pour perfectionner votre site. 
+                        Forfaits de maintenance disponibles pour la sécurité et les mises à jour. 
+                        Accompagnement à long terme pour faire évoluer votre présence digitale.
                     </p>
                 </div>
             </div>
@@ -747,11 +915,16 @@
         </div>
     </div>
 
-    <!-- Lightbox -->
+    <!-- Lightbox avec navigation -->
     <div id="lightbox" class="lightbox">
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <span class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1)">‹</span>
+        <span class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1)">›</span>
         <div class="lightbox-content">
             <img id="lightbox-img" src="" alt="">
+        </div>
+        <div class="lightbox-counter">
+            <span id="current-img">1</span> / <span id="total-img">1</span>
         </div>
     </div>
 
@@ -759,6 +932,10 @@
         // GitHub repository info
         const GITHUB_REPO = 'EmailSortpro/vianneyphotography';
         const GITHUB_BRANCH = 'main';
+        
+        // Variables pour la lightbox
+        let currentGalleryImages = [];
+        let currentImageIndex = 0;
 
         // Navigation
         function showPage(pageId) {
@@ -820,11 +997,16 @@
                 // Clear loading message
                 container.innerHTML = '';
                 
+                // Store images for this gallery
+                const galleryImages = [];
+                
                 // Create gallery items
-                imageFiles.forEach(file => {
+                imageFiles.forEach((file, index) => {
+                    galleryImages.push(file.download_url);
+                    
                     const item = document.createElement('div');
                     item.className = 'gallery-item';
-                    item.onclick = () => openLightbox(file.download_url);
+                    item.onclick = () => openLightbox(galleryImages, index);
                     
                     const img = document.createElement('img');
                     img.src = file.download_url;
@@ -868,11 +1050,16 @@
                 // Clear loading message
                 container.innerHTML = '';
                 
+                // Store images for this gallery
+                const galleryImages = [];
+                
                 // Create gallery items
-                imageFiles.forEach(file => {
+                imageFiles.forEach((file, index) => {
+                    galleryImages.push(file.download_url);
+                    
                     const item = document.createElement('div');
                     item.className = 'gallery-item';
-                    item.onclick = () => openLightbox(file.download_url);
+                    item.onclick = () => openLightbox(galleryImages, index);
                     
                     const img = document.createElement('img');
                     img.src = file.download_url;
@@ -892,11 +1079,32 @@
             }
         }
 
-        // Lightbox functions
-        function openLightbox(imageSrc) {
-            document.getElementById('lightbox-img').src = imageSrc;
+        // Lightbox functions avec navigation
+        function openLightbox(images, index) {
+            currentGalleryImages = images;
+            currentImageIndex = index;
+            updateLightboxImage();
             document.getElementById('lightbox').classList.add('active');
             document.body.style.overflow = 'hidden';
+        }
+
+        function updateLightboxImage() {
+            document.getElementById('lightbox-img').src = currentGalleryImages[currentImageIndex];
+            document.getElementById('current-img').textContent = currentImageIndex + 1;
+            document.getElementById('total-img').textContent = currentGalleryImages.length;
+        }
+
+        function changeLightboxImage(direction) {
+            currentImageIndex += direction;
+            
+            // Loop around
+            if (currentImageIndex < 0) {
+                currentImageIndex = currentGalleryImages.length - 1;
+            } else if (currentImageIndex >= currentGalleryImages.length) {
+                currentImageIndex = 0;
+            }
+            
+            updateLightboxImage();
         }
 
         function closeLightbox() {
@@ -904,10 +1112,17 @@
             document.body.style.overflow = '';
         }
 
-        // Close lightbox on escape key
+        // Keyboard navigation for lightbox
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeLightbox();
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    changeLightboxImage(-1);
+                } else if (e.key === 'ArrowRight') {
+                    changeLightboxImage(1);
+                }
             }
         });
 
