@@ -723,7 +723,7 @@
                 <p class="gallery-subtitle">Capturer l'essence de chaque personnalité dans des portraits authentiques et naturels</p>
             </div>
             <div id="portrait-gallery" class="gallery-grid">
-                <div class="loading">Chargement des images...</div>
+                <!-- Les images seront chargées ici -->
             </div>
         </section>
 
@@ -759,7 +759,7 @@
                 <p class="gallery-subtitle">Découvrez une sélection de mes plus beaux mariages</p>
             </div>
             <div id="wedding-gallery" class="gallery-grid">
-                <div class="loading">Chargement des images...</div>
+                <!-- Les images seront chargées ici -->
             </div>
         </section>
 
@@ -770,7 +770,7 @@
                 <p class="gallery-subtitle">Raconter des histoires à travers l'objectif, capturer l'essence des lieux et des moments.</p>
             </div>
             <div id="reportage-gallery" class="gallery-grid">
-                <div class="loading">Chargement des images...</div>
+                <!-- Les images seront chargées ici -->
             </div>
         </section>
 
@@ -860,8 +860,32 @@
         // Variables globales
         let currentGalleryImages = [];
         let currentImageIndex = 0;
-        let galleryCache = {};
         let currentSection = 'home';
+
+        // Données des galeries - Utilisation des images à la racine qui fonctionnent
+        const galleryData = {
+            portrait: [
+                // Images à la racine qui correspondent aux portraits
+                'DSC00901.jpg', 'DSC00910.jpg', 'DSC00924.jpg', 'DSC00936.jpg',
+                'DSC00938.jpg', 'DSC00945.jpg', 'DSC00953.jpg', 'DSC00955.jpg',
+                'DSC00960.jpg', 'DSC00965.jpg', 'DSC00973.jpg', 'DSC00978.jpg',
+                'DSC00982.jpg', 'DSC00989.jpg', 'DSC00995.jpg', 'DSC01002.jpg'
+            ],
+            wedding: [
+                // Images de mariage à la racine
+                'DSC03748.jpg', 'DSC03750.jpg', 'DSC03753.jpg', 'DSC03755.jpg',
+                'DSC03757.jpg', 'DSC03758.jpg', 'DSC03759.jpg', 'DSC03760.jpg',
+                'DSC03761.jpg', 'DSC03762.jpg', 'DSC03763.jpg', 'DSC03764.jpg',
+                'DSC03765.jpg', 'DSC03766.jpg', 'DSC03767.jpg', 'DSC03768.jpg'
+            ],
+            reportage: [
+                // Images de reportage/architecture à la racine
+                'DSC01014.jpg', 'DSC01028.jpg', 'DSC01031.jpg', 'DSC01041.jpg',
+                'DSC01050.jpg', 'DSC01063.jpg', 'DSC01072.jpg', 'DSC01085.jpg',
+                'DSC01093.jpg', 'DSC01103.jpg', 'DSC01112.jpg', 'DSC01125.jpg',
+                'DSC01134.jpg', 'DSC01147.jpg', 'DSC01155.jpg', 'DSC01168.jpg'
+            ]
+        };
 
         // Navigation par scroll vers les sections
         function scrollToSection(sectionId) {
@@ -873,15 +897,14 @@
                 
                 // Fermer le menu mobile
                 document.querySelector('.nav-menu').classList.remove('mobile-active');
-                document.querySelector('.menu-toggle').classList.remove('active');
                 
-                // Charger les galeries si nécessaire
+                // Charger les galeries au besoin
                 if (sectionId === 'portrait') {
                     loadGallery('portrait', 'portrait-gallery');
                 } else if (sectionId === 'mariage') {
                     loadGallery('wedding', 'wedding-gallery');
                 } else if (sectionId === 'reportage') {
-                    loadReportageGallery();
+                    loadGallery('reportage', 'reportage-gallery');
                 }
             }
         }
@@ -899,62 +922,18 @@
             });
         }
 
-        // Listes d'images par galerie
-        const galleryImages = {
-            portrait: [
-                'DSC00146.jpg', 'DSC00148.jpg', 'DSC00149.jpg', 'DSC00150.jpg',
-                'DSC00151.jpg', 'DSC00152.jpg', 'DSC00153.jpg', 'DSC00156.jpg',
-                'DSC00157.jpg', 'DSC00158.jpg', 'DSC00159.jpg', 'DSC00160.jpg',
-                'DSC00162.jpg', 'DSC00164.jpg', 'DSC00165.jpg', 'DSC00166.jpg',
-                'DSC00167.jpg', 'DSC00169.jpg', 'DSC00171.jpg', 'DSC00172.jpg',
-                'DSC00173.jpg', 'DSC00174.jpg', 'DSC00175.jpg', 'DSC00177.jpg',
-                'DSC00181.jpg', 'DSC00182.jpg', 'DSC00185.jpg', 'DSC00187.jpg',
-                'DSC00191.jpg', 'DSC00193.jpg', 'DSC00194.jpg', 'DSC00196.jpg',
-                'DSC00199.jpg', 'DSC00201.jpg', 'DSC00202.jpg', 'DSC00204.jpg',
-                'DSC00206.jpg', 'DSC00207.jpg', 'DSC00208.jpg', 'DSC00210.jpg'
-            ],
-            wedding: [
-                'DSC03748.jpg', 'DSC03750.jpg', 'DSC03753.jpg', 'DSC03755.jpg',
-                'DSC03757.jpg', 'DSC03758.jpg', 'DSC03759.jpg', 'DSC03760.jpg',
-                'DSC03761.jpg', 'DSC03762.jpg', 'DSC03763.jpg', 'DSC03764.jpg',
-                'DSC03765.jpg', 'DSC03766.jpg', 'DSC03767.jpg', 'DSC03768.jpg',
-                'DSC03769.jpg', 'DSC03770.jpg', 'DSC03771.jpg', 'DSC03772.jpg',
-                'DSC03773.jpg', 'DSC03774.jpg', 'DSC03775.jpg', 'DSC03776.jpg',
-                'DSC03777.jpg', 'DSC03778.jpg', 'DSC03779.jpg', 'DSC03780.jpg',
-                'DSC03781.jpg', 'DSC03782.jpg', 'DSC03783.jpg', 'DSC03784.jpg',
-                'DSC03785.jpg', 'DSC03786.jpg', 'DSC03787.jpg', 'DSC03788.jpg',
-                'DSC03789.jpg', 'DSC03790.jpg', 'DSC03791.jpg', 'DSC03792.jpg'
-            ],
-            reportage: [
-                'DSC00211.jpg', 'DSC00212.jpg', 'DSC00213.jpg', 'DSC00215.jpg',
-                'DSC00216.jpg', 'DSC00217.jpg', 'DSC00218.jpg', 'DSC00219.jpg',
-                'DSC00220.jpg', 'DSC00221.jpg', 'DSC00222.jpg', 'DSC00223.jpg',
-                'DSC00224.jpg', 'DSC00225.jpg', 'DSC00226.jpg', 'DSC00227.jpg',
-                'DSC00228.jpg', 'DSC00229.jpg', 'DSC00230.jpg', 'DSC00231.jpg'
-            ],
-            archi: [
-                'DSC00232.jpg', 'DSC00233.jpg', 'DSC00234.jpg', 'DSC00235.jpg',
-                'DSC00236.jpg', 'DSC00237.jpg', 'DSC00238.jpg', 'DSC00239.jpg',
-                'DSC00240.jpg', 'DSC00241.jpg', 'DSC00242.jpg', 'DSC00243.jpg',
-                'DSC00244.jpg', 'DSC00245.jpg', 'DSC00246.jpg', 'DSC00247.jpg',
-                'DSC00248.jpg', 'DSC00249.jpg', 'DSC00250.jpg', 'DSC00251.jpg'
-            ]
-        };
-
-        // Chargement direct des galeries
-        function loadGallery(folder, containerId) {
+        // Charger une galerie
+        function loadGallery(type, containerId) {
             const container = document.getElementById(containerId);
             if (!container) return;
             
+            const images = galleryData[type] || [];
             container.innerHTML = '';
             const imageUrls = [];
-            const fragment = document.createDocumentFragment();
-            
-            const images = galleryImages[folder] || [];
-            const baseUrl = `https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/${folder}/`;
             
             images.forEach((filename, index) => {
-                const imageUrl = baseUrl + filename;
+                // Utiliser les images à la racine du repository
+                const imageUrl = `https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/${filename}`;
                 imageUrls.push(imageUrl);
                 
                 const item = document.createElement('div');
@@ -963,99 +942,12 @@
                 
                 const img = document.createElement('img');
                 img.src = imageUrl;
-                img.alt = 'Photo';
+                img.alt = `Photo ${type}`;
                 img.loading = 'lazy';
                 
                 item.appendChild(img);
-                fragment.appendChild(item);
+                container.appendChild(item);
             });
-            
-            container.appendChild(fragment);
-        }
-
-        // Fonction spécifique pour charger la galerie wedding
-        function loadWeddingGallery() {
-            const container = document.getElementById('wedding-gallery');
-            if (!container) return;
-            
-            container.innerHTML = '';
-            const imageUrls = [];
-            const fragment = document.createDocumentFragment();
-            
-            const images = galleryImages.wedding || [];
-            const baseUrl = `https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/wedding/`;
-            
-            images.forEach((filename, index) => {
-                const imageUrl = baseUrl + filename;
-                imageUrls.push(imageUrl);
-                
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                item.onclick = () => openLightbox(imageUrls, index);
-                
-                const img = document.createElement('img');
-                img.src = imageUrl;
-                img.alt = 'Photo';
-                img.loading = 'lazy';
-                
-                item.appendChild(img);
-                fragment.appendChild(item);
-            });
-            
-            container.appendChild(fragment);
-        }
-
-        // Chargement galerie reportage (combine reportage et archi)
-        function loadReportageGallery() {
-            const container = document.getElementById('reportage-gallery');
-            if (!container) return;
-            
-            container.innerHTML = '';
-            const imageUrls = [];
-            const fragment = document.createDocumentFragment();
-            
-            // Combiner reportage et archi
-            const reportageImages = galleryImages.reportage || [];
-            const archiImages = galleryImages.archi || [];
-            
-            // Ajouter images reportage
-            reportageImages.forEach((filename, index) => {
-                const imageUrl = `https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/reportage/${filename}`;
-                imageUrls.push(imageUrl);
-                
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                item.onclick = () => openLightbox(imageUrls, index);
-                
-                const img = document.createElement('img');
-                img.src = imageUrl;
-                img.alt = 'Photo';
-                img.loading = 'lazy';
-                
-                item.appendChild(img);
-                fragment.appendChild(item);
-            });
-            
-            // Ajouter images archi
-            archiImages.forEach((filename, index) => {
-                const imageUrl = `https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/archi/${filename}`;
-                const actualIndex = reportageImages.length + index;
-                imageUrls.push(imageUrl);
-                
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                item.onclick = () => openLightbox(imageUrls, actualIndex);
-                
-                const img = document.createElement('img');
-                img.src = imageUrl;
-                img.alt = 'Photo';
-                img.loading = 'lazy';
-                
-                item.appendChild(img);
-                fragment.appendChild(item);
-            });
-            
-            container.appendChild(fragment);
         }
 
         // Lightbox
@@ -1091,9 +983,7 @@
         // Menu mobile
         function toggleMobileMenu() {
             const navMenu = document.querySelector('.nav-menu');
-            const menuToggle = document.querySelector('.menu-toggle');
             navMenu.classList.toggle('mobile-active');
-            menuToggle.classList.toggle('active');
         }
 
         // Formulaire
@@ -1116,7 +1006,6 @@
             
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
                 if (scrollY >= (sectionTop - 100)) {
                     current = section.getAttribute('id');
                 }
@@ -1141,10 +1030,10 @@
         // Initialisation
         document.addEventListener('DOMContentLoaded', () => {
             updateNavActive('home');
-            // Précharger la première galerie visible après un délai
+            // Précharger la galerie portrait
             setTimeout(() => {
-                loadPortraitGallery();
-            }, 1000);
+                loadGallery('portrait', 'portrait-gallery');
+            }, 500);
         });
     </script>
 </body>
