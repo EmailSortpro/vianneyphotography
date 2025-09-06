@@ -1050,32 +1050,30 @@
             }
         });
 
-        // Scroll avec la molette
-        let isScrolling = false;
-        window.addEventListener('wheel', (e) => {
-            if (isScrolling) return;
-            
-            const sections = ['home', 'about', 'portrait', 'mariage', 'reportage', 'web', 'contact'];
-            const currentIndex = sections.indexOf(currentSection);
-            
-            if (e.deltaY > 0 && currentIndex < sections.length - 1) {
-                isScrolling = true;
-                scrollToSection(sections[currentIndex + 1]);
-                setTimeout(() => { isScrolling = false; }, 1000);
-            } else if (e.deltaY < 0 && currentIndex > 0) {
-                isScrolling = true;
-                scrollToSection(sections[currentIndex - 1]);
-                setTimeout(() => { isScrolling = false; }, 1000);
-            }
-        }, { passive: true });
-
-        // Keyboard navigation
+        // Scroll avec la molette - DÉSACTIVÉ pour scroll naturel
+        // L'utilisateur garde le contrôle total du scroll
+        
+        // Alternative : Navigation avec les touches flèches uniquement
         document.addEventListener('keydown', (e) => {
             const lightbox = document.getElementById('lightbox');
             if (lightbox.classList.contains('active')) {
                 if (e.key === 'Escape') closeLightbox();
                 else if (e.key === 'ArrowLeft') changeLightboxImage(-1);
                 else if (e.key === 'ArrowRight') changeLightboxImage(1);
+            } else {
+                // Navigation entre sections avec Ctrl + flèches
+                if (e.ctrlKey) {
+                    const sections = ['home', 'about', 'portrait', 'mariage', 'reportage', 'web', 'contact'];
+                    const currentIndex = sections.indexOf(currentSection);
+                    
+                    if (e.key === 'ArrowDown' && currentIndex < sections.length - 1) {
+                        e.preventDefault();
+                        scrollToSection(sections[currentIndex + 1]);
+                    } else if (e.key === 'ArrowUp' && currentIndex > 0) {
+                        e.preventDefault();
+                        scrollToSection(sections[currentIndex - 1]);
+                    }
+                }
             }
         });
 
