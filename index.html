@@ -973,6 +973,38 @@
             container.appendChild(fragment);
         }
 
+        // Fonction spécifique pour charger la galerie wedding
+        function loadWeddingGallery() {
+            const container = document.getElementById('wedding-gallery');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            const imageUrls = [];
+            const fragment = document.createDocumentFragment();
+            
+            const images = galleryImages.wedding || [];
+            const baseUrl = `https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/wedding/`;
+            
+            images.forEach((filename, index) => {
+                const imageUrl = baseUrl + filename;
+                imageUrls.push(imageUrl);
+                
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.onclick = () => openLightbox(imageUrls, index);
+                
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = 'Photo';
+                img.loading = 'lazy';
+                
+                item.appendChild(img);
+                fragment.appendChild(item);
+            });
+            
+            container.appendChild(fragment);
+        }
+
         // Chargement galerie reportage (combine reportage et archi)
         function loadReportageGallery() {
             const container = document.getElementById('reportage-gallery');
