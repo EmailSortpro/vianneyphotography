@@ -604,6 +604,14 @@
                 grid-template-columns: 1fr;
             }
 
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .wedding-services {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
             .services-preview {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -617,11 +625,11 @@
             <button class="logo" onclick="navigate('home')">Vianney Hastings</button>
             <ul class="nav-menu" id="navMenu">
                 <li><button onclick="navigate('home')" class="active">Accueil</button></li>
+                <li><button onclick="navigate('about')">À propos</button></li>
                 <li><button onclick="navigate('portrait')">Portrait</button></li>
                 <li><button onclick="navigate('mariage')">Mariage</button></li>
                 <li><button onclick="navigate('reportage')">Reportage</button></li>
                 <li><button onclick="navigate('web')">Sites Web</button></li>
-                <li><button onclick="navigate('about')">À propos</button></li>
                 <li><button onclick="navigate('contact')">Contact</button></li>
             </ul>
             <button class="menu-toggle" onclick="toggleMobileMenu()">
@@ -1019,8 +1027,10 @@
             }
         });
 
-        // Initialisation
-        navigate('home');
+        // Initialisation - charger la page d'accueil
+        document.addEventListener('DOMContentLoaded', () => {
+            navigate('home');
+        });
     </script>
 </body>
 </html>
