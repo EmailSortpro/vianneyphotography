@@ -63,7 +63,6 @@
             font-size: 1.4rem;
             font-weight: 500;
             color: var(--primary);
-            text-decoration: none;
             cursor: pointer;
             white-space: nowrap;
             padding: 6px 12px;
@@ -140,7 +139,7 @@
             min-height: 100vh;
         }
 
-        /* Hero fullscreen avec titre */
+        /* Hero fullscreen */
         .home-page {
             position: relative;
             width: 100%;
@@ -206,7 +205,6 @@
             padding: 15px 30px;
             background: var(--accent);
             color: var(--white);
-            text-decoration: none;
             border: none;
             border-radius: 30px;
             font-weight: 500;
@@ -234,7 +232,108 @@
             }
         }
 
-        /* Gallery Pages - CARRÉS */
+        /* Indicateur de scroll */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            font-size: 2rem;
+            color: var(--white);
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-indicator:hover span {
+            opacity: 1;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Section intro */
+        .intro-section {
+            background: var(--secondary);
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .intro-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .intro-content h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        .intro-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-preview {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .service-preview {
+            padding: 30px 20px;
+            background: var(--white);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-preview:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .service-preview h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .service-preview p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* Gallery Pages */
         .gallery-page {
             padding-top: 100px;
             padding-bottom: 60px;
@@ -263,7 +362,7 @@
             line-height: 1.8;
         }
 
-        /* Grille de galerie avec photos CARRÉES */
+        /* Grille de galerie avec photos carrées */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -299,7 +398,7 @@
             transform: scale(1.08);
         }
 
-        /* Section spéciale mariage */
+        /* Section spéciale mariage et sites web - STYLE UNIFIÉ */
         .wedding-intro {
             background: var(--white);
             padding: 60px 40px;
@@ -307,44 +406,58 @@
         }
 
         .wedding-content {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             text-align: center;
         }
 
-        .wedding-services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+        /* GRILLE FORCÉE SUR UNE LIGNE */
+        .four-columns {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
             margin-top: 40px;
+            width: 100%;
         }
 
-        .wedding-service {
-            padding: 30px;
+        .column-item {
+            flex: 1;
+            padding: 20px 10px;
             background: var(--secondary);
             border-radius: 8px;
             transition: transform 0.3s ease;
+            text-align: center;
+            min-width: 0; /* Important pour éviter le débordement */
         }
 
-        .wedding-service:hover {
+        .column-item:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        .wedding-service h3 {
+        .column-item h3 {
             color: var(--accent);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
-        .wedding-service p {
+        .column-item p {
             color: var(--text-light);
-            line-height: 1.6;
+            line-height: 1.4;
+            font-size: 0.85rem;
         }
 
-        /* Other pages styles */
+        /* Other pages */
         .content-page {
             padding-top: 100px;
             min-height: 100vh;
+        }
+
+        .web-services-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
         }
 
         .about-content {
@@ -380,45 +493,6 @@
             height: 100%;
             object-fit: cover;
             filter: grayscale(20%);
-        }
-
-        .web-services-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 40px;
-        }
-
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .process-step {
-            background: var(--secondary);
-            padding: 40px 30px;
-            border-radius: 8px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .process-step:hover {
-            transform: translateY(-10px);
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: var(--accent);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin: 0 auto 20px;
         }
 
         .contact-container {
@@ -474,7 +548,7 @@
             transform: translateY(-2px);
         }
 
-        /* Lightbox avec navigation */
+        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -604,12 +678,26 @@
                 grid-template-columns: 1fr;
             }
 
-            .wedding-services {
-                grid-template-columns: repeat(2, 1fr);
+            .four-columns {
+                flex-wrap: wrap;
             }
-            
+
+            .column-item {
+                flex: 1 1 45%;
+            }
+
             .services-preview {
                 grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .four-columns {
+                flex-direction: column;
+            }
+
+            .column-item {
+                flex: 1 1 100%;
             }
         }
     </style>
@@ -668,7 +756,39 @@
                     <div class="hero-content">
                         <h1>Vianney Hastings</h1>
                         <p class="subtitle">Photographe Mariages, Événements, Portraits</p>
-                        <button class="cta-button" onclick="navigate('portrait')">Découvrir mon travail</button>
+                        <button class="cta-button" onclick="navigate('about')">Découvrir mon travail</button>
+                    </div>
+                    <div class="scroll-indicator" onclick="scrollToIntro()">
+                        <span>↓</span>
+                    </div>
+                </div>
+                <div class="intro-section" id="intro-section">
+                    <div class="intro-content">
+                        <h2>Capturer vos moments précieux</h2>
+                        <p>Photographe passionné basé en région parisienne, je vous accompagne dans tous vos projets photo : mariages, événements privés et professionnels, portraits. Mon approche naturelle et authentique permet de saisir l'essence de chaque moment.</p>
+                        
+                        <div class="services-preview">
+                            <div class="service-preview" onclick="navigate('portrait')">
+                                <div class="service-icon">👤</div>
+                                <h3>Portraits</h3>
+                                <p>Séances photo individuelles, couples ou famille</p>
+                            </div>
+                            <div class="service-preview" onclick="navigate('mariage')">
+                                <div class="service-icon">💒</div>
+                                <h3>Mariages</h3>
+                                <p>Reportage complet de votre jour J</p>
+                            </div>
+                            <div class="service-preview" onclick="navigate('reportage')">
+                                <div class="service-icon">📸</div>
+                                <h3>Reportages</h3>
+                                <p>Architecture et événements professionnels</p>
+                            </div>
+                            <div class="service-preview" onclick="navigate('web')">
+                                <div class="service-icon">💻</div>
+                                <h3>Sites Web</h3>
+                                <p>Création de sites pour vos événements</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `,
@@ -676,7 +796,7 @@
                 <div class="gallery-page">
                     <div class="gallery-header">
                         <h2 class="gallery-title">Portraits</h2>
-                        <p class="gallery-subtitle">Capturer l'essence de chaque personnalité dans des portraits authentiques et naturels.</p>
+                        <p class="gallery-subtitle">Capturer l'essence de chaque personnalité dans des portraits authentiques et naturels</p>
                     </div>
                     <div id="gallery-content" class="gallery-grid">
                         <div class="loading">Chargement des images...</div>
@@ -691,20 +811,20 @@
                             <p style="font-size: 1.2rem; color: var(--text-light); line-height: 1.8; margin-bottom: 40px;">
                                 Votre mariage est unique, et chaque instant mérite d'être immortalisé avec élégance.
                             </p>
-                            <div class="wedding-services">
-                                <div class="wedding-service">
+                            <div class="four-columns">
+                                <div class="column-item">
                                     <h3>Préparatifs</h3>
                                     <p>Les moments intimes de préparation, l'émotion des premiers regards.</p>
                                 </div>
-                                <div class="wedding-service">
+                                <div class="column-item">
                                     <h3>Cérémonie</h3>
                                     <p>L'échange des vœux, les larmes de joie, capturés avec sensibilité.</p>
                                 </div>
-                                <div class="wedding-service">
+                                <div class="column-item">
                                     <h3>Réception</h3>
                                     <p>L'ambiance festive et tous les moments spontanés de votre soirée.</p>
                                 </div>
-                                <div class="wedding-service">
+                                <div class="column-item">
                                     <h3>Couple</h3>
                                     <p>Des portraits romantiques dans des décors soigneusement choisis.</p>
                                 </div>
@@ -739,34 +859,22 @@
                                 En complément de mes services photographiques, je propose la création de sites web personnalisés.
                             </p>
                         </div>
-                        <div class="process-steps">
-                            <div class="process-step">
-                                <div class="step-number">1</div>
-                                <h3 style="font-size: 1.4rem; color: var(--primary); margin-bottom: 15px;">🔍 Qualification du besoin</h3>
-                                <p style="color: var(--text-light); line-height: 1.6;">
-                                    Entretien initial pour comprendre vos objectifs et créer un site qui vous ressemble.
-                                </p>
+                        <div class="four-columns">
+                            <div class="column-item">
+                                <h3>🔍 Qualification du besoin</h3>
+                                <p>Entretien initial pour comprendre vos objectifs et créer un site qui vous ressemble.</p>
                             </div>
-                            <div class="process-step">
-                                <div class="step-number">2</div>
-                                <h3 style="font-size: 1.4rem; color: var(--primary); margin-bottom: 15px;">🧭 Définition du périmètre</h3>
-                                <p style="color: var(--text-light); line-height: 1.6;">
-                                    Choix des fonctionnalités et technologies. Prestation photo sur site possible.
-                                </p>
+                            <div class="column-item">
+                                <h3>🧭 Définition du périmètre</h3>
+                                <p>Choix des fonctionnalités et technologies. Prestation photo sur site possible.</p>
                             </div>
-                            <div class="process-step">
-                                <div class="step-number">3</div>
-                                <h3 style="font-size: 1.4rem; color: var(--primary); margin-bottom: 15px;">🛠️ Création et validation</h3>
-                                <p style="color: var(--text-light); line-height: 1.6;">
-                                    Développement, tests et validation finale avant mise en ligne.
-                                </p>
+                            <div class="column-item">
+                                <h3>🛠️ Création et validation</h3>
+                                <p>Développement, tests et validation finale avant mise en ligne.</p>
                             </div>
-                            <div class="process-step">
-                                <div class="step-number">4</div>
-                                <h3 style="font-size: 1.4rem; color: var(--primary); margin-bottom: 15px;">🔄 Évolutions</h3>
-                                <p style="color: var(--text-light); line-height: 1.6;">
-                                    Retouches et forfaits de maintenance pour faire évoluer votre site.
-                                </p>
+                            <div class="column-item">
+                                <h3>🔄 Évolutions</h3>
+                                <p>Retouches et forfaits de maintenance pour faire évoluer votre site.</p>
                             </div>
                         </div>
                     </div>
@@ -826,7 +934,7 @@
             `
         };
 
-        // Navigation simplifiée
+        // Navigation
         function navigate(page) {
             currentPage = page;
             
@@ -856,16 +964,19 @@
             window.scrollTo(0, 0);
         }
 
-        // Chargement optimisé des galeries
+        // Chargement des galeries
         async function loadGalleryForPage(page) {
             const container = document.getElementById('gallery-content');
             if (!container) return;
             
             // Utiliser le cache si disponible
             if (galleryCache[page]) {
-                displayGallery(galleryCache[page], container);
+                displayGalleryFast(galleryCache[page], container);
                 return;
             }
+            
+            // Afficher le loader
+            container.innerHTML = '<div class="loading">Chargement des images...</div>';
             
             try {
                 let urls = [];
@@ -880,49 +991,86 @@
                 
                 const allImages = [];
                 
-                for (const folder of urls) {
-                    const response = await fetch(`https://api.github.com/repos/EmailSortpro/vianneyphotography/contents/${folder}`);
-                    const files = await response.json();
-                    
-                    const imageFiles = files.filter(file => 
-                        /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name)
-                    ).slice(0, 20); // Limiter à 20 images par dossier pour la performance
-                    
-                    allImages.push(...imageFiles);
-                }
+                // Chargement parallèle
+                const promises = urls.map(folder => 
+                    fetch(`https://api.github.com/repos/EmailSortpro/vianneyphotography/contents/${folder}`)
+                        .then(response => response.json())
+                        .then(files => files.filter(file => /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name)))
+                );
+                
+                const results = await Promise.all(promises);
+                results.forEach(files => {
+                    allImages.push(...files.slice(0, 12));
+                });
                 
                 // Mettre en cache
                 galleryCache[page] = allImages;
                 
                 // Afficher
-                displayGallery(allImages, container);
+                displayGalleryFast(allImages, container);
                 
             } catch (error) {
                 console.error('Erreur:', error);
-                container.innerHTML = '<div class="loading">Erreur lors du chargement</div>';
+                container.innerHTML = '<div class="loading">Erreur lors du chargement. <button onclick="loadGalleryForPage(\'' + page + '\')" style="margin-left: 10px; padding: 5px 10px; background: var(--accent); color: white; border: none; border-radius: 5px; cursor: pointer;">Réessayer</button></div>';
             }
         }
 
-        // Affichage de la galerie
-        function displayGallery(images, container) {
+        // Affichage rapide de la galerie
+        function displayGalleryFast(images, container) {
             container.innerHTML = '';
             const imageUrls = [];
+            
+            const fragment = document.createDocumentFragment();
             
             images.forEach((file, index) => {
                 imageUrls.push(file.download_url);
                 
                 const item = document.createElement('div');
                 item.className = 'gallery-item';
+                item.style.background = '#f0f0f0';
                 item.onclick = () => openLightbox(imageUrls, index);
                 
                 const img = document.createElement('img');
                 img.src = file.download_url;
                 img.alt = 'Photo';
-                img.loading = 'lazy';
+                img.loading = 'eager';
+                img.decoding = 'async';
                 
                 item.appendChild(img);
-                container.appendChild(item);
+                fragment.appendChild(item);
             });
+            
+            container.appendChild(fragment);
+        }
+
+        // Fonction pour scroller vers l'intro
+        function scrollToIntro() {
+            const intro = document.getElementById('intro-section');
+            if (intro) {
+                intro.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Détection du scroll sur la page d'accueil
+        let isScrolling = false;
+        
+        function handleHomeScroll(e) {
+            if (currentPage !== 'home' || isScrolling) return;
+            
+            const intro = document.getElementById('intro-section');
+            if (intro) {
+                const rect = intro.getBoundingClientRect();
+                if (rect.top < 100 && e.deltaY > 0) {
+                    isScrolling = true;
+                    navigate('portrait');
+                    setTimeout(() => { isScrolling = false; }, 1000);
+                    return;
+                }
+            }
+            
+            if (e.deltaY > 0) {
+                scrollToIntro();
+            }
         }
 
         // Lightbox
@@ -976,20 +1124,6 @@
             }, 3000);
         }
 
-        // Détection du scroll sur la page d'accueil
-        let isScrolling = false;
-        
-        function handleHomeScroll(e) {
-            if (currentPage !== 'home' || isScrolling) return;
-            
-            // Détecter le scroll vers le bas
-            if (e.deltaY > 0) {
-                isScrolling = true;
-                navigate('portrait');
-                setTimeout(() => { isScrolling = false; }, 1000);
-            }
-        }
-
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             const lightbox = document.getElementById('lightbox');
@@ -1017,13 +1151,13 @@
         window.addEventListener('touchend', (e) => {
             if (currentPage === 'home') {
                 const touchEndY = e.changedTouches[0].clientY;
-                if (touchStartY - touchEndY > 50) { // Swipe up
+                if (touchStartY - touchEndY > 50) {
                     navigate('portrait');
                 }
             }
         });
 
-        // Initialisation - charger la page d'accueil
+        // Initialisation
         document.addEventListener('DOMContentLoaded', () => {
             navigate('home');
         });
