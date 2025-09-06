@@ -57,12 +57,23 @@
         }
 
         .logo {
+            background: none;
+            border: none;
+            font-family: inherit;
             font-size: 1.4rem;
             font-weight: 500;
             color: var(--primary);
             text-decoration: none;
             cursor: pointer;
             white-space: nowrap;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            background: var(--accent);
+            color: var(--white);
         }
 
         .nav-menu {
@@ -71,9 +82,11 @@
             gap: 1.5rem;
         }
 
-        .nav-menu a {
+        .nav-menu button {
+            background: none;
+            border: none;
             color: var(--primary);
-            text-decoration: none;
+            font-family: inherit;
             font-size: 0.85rem;
             font-weight: 400;
             padding: 6px 12px;
@@ -85,8 +98,8 @@
             white-space: nowrap;
         }
 
-        .nav-menu a:hover,
-        .nav-menu a.active {
+        .nav-menu button:hover,
+        .nav-menu button.active {
             background: var(--accent);
             color: var(--white);
         }
@@ -98,6 +111,8 @@
             gap: 4px;
             cursor: pointer;
             padding: 8px;
+            background: none;
+            border: none;
         }
         
         .menu-toggle span {
@@ -119,14 +134,10 @@
             transform: rotate(-45deg) translate(6px, -6px);
         }
 
-        /* Pages */
-        .page {
-            display: none;
+        /* Container principal */
+        #app {
+            width: 100%;
             min-height: 100vh;
-        }
-
-        .page.active {
-            display: block;
         }
 
         /* Hero fullscreen avec titre */
@@ -196,8 +207,10 @@
             background: var(--accent);
             color: var(--white);
             text-decoration: none;
+            border: none;
             border-radius: 30px;
             font-weight: 500;
+            font-size: 1rem;
             transition: all 0.3s ease;
             animation: fadeInUp 1.5s ease-out 0.9s both;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -253,9 +266,9 @@
         /* Grille de galerie avec photos CARRÉES */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
-            padding: 0 40px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+            padding: 0 20px;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -263,11 +276,10 @@
         .gallery-item {
             position: relative;
             overflow: hidden;
-            background: var(--white);
+            background: #f0f0f0;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            aspect-ratio: 1;  /* CARRÉ */
-            border-radius: 0;
+            aspect-ratio: 1;
         }
 
         .gallery-item:hover {
@@ -285,6 +297,181 @@
 
         .gallery-item:hover img {
             transform: scale(1.08);
+        }
+
+        /* Section spéciale mariage */
+        .wedding-intro {
+            background: var(--white);
+            padding: 60px 40px;
+            margin-bottom: 40px;
+        }
+
+        .wedding-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .wedding-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .wedding-service {
+            padding: 30px;
+            background: var(--secondary);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .wedding-service:hover {
+            transform: translateY(-5px);
+        }
+
+        .wedding-service h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .wedding-service p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Other pages styles */
+        .content-page {
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .about-text p {
+            margin-bottom: 30px;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+        }
+
+        .web-services-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .process-step {
+            background: var(--secondary);
+            padding: 40px 30px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 0 auto 20px;
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-form {
+            background: var(--secondary);
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            background: var(--white);
+        }
+
+        .submit-btn {
+            background: var(--accent);
+            color: var(--white);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #b8956a;
+            transform: translateY(-2px);
         }
 
         /* Lightbox avec navigation */
@@ -328,14 +515,8 @@
             color: var(--white);
             cursor: pointer;
             z-index: 2001;
-            transition: transform 0.3s ease;
         }
 
-        .lightbox-close:hover {
-            transform: scale(1.2);
-        }
-
-        /* Navigation dans la lightbox */
         .lightbox-nav {
             position: absolute;
             top: 50%;
@@ -345,7 +526,6 @@
             cursor: pointer;
             padding: 20px;
             background: rgba(0,0,0,0.3);
-            transition: background 0.3s ease;
             user-select: none;
         }
 
@@ -373,263 +553,6 @@
             border-radius: 20px;
         }
 
-        /* Page Mariage détaillée */
-        .wedding-intro {
-            background: var(--white);
-            padding: 60px 40px;
-            margin-bottom: 40px;
-        }
-
-        .wedding-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .wedding-services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .wedding-service {
-            padding: 30px;
-            background: var(--secondary);
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .wedding-service:hover {
-            transform: translateY(-5px);
-        }
-
-        .wedding-service h3 {
-            color: var(--accent);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-
-        .wedding-service p {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* About Page */
-        .about-page {
-            padding-top: 100px;
-            background: var(--secondary);
-            min-height: 100vh;
-        }
-
-        .about-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 60px 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--text-light);
-        }
-
-        .about-text p {
-            margin-bottom: 30px;
-        }
-
-        .about-image {
-            width: 100%;
-            height: 500px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(20%);
-            transition: filter 0.3s ease;
-        }
-
-        .about-image:hover img {
-            filter: grayscale(0%);
-        }
-
-        /* Web Services Page */
-        .web-services-page {
-            padding-top: 100px;
-            background: var(--white);
-            min-height: 100vh;
-        }
-
-        .web-services-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 40px;
-        }
-
-        .web-services-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .web-services-title {
-            font-size: 3rem;
-            font-weight: 300;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .web-services-intro {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .process-step {
-            background: var(--secondary);
-            padding: 40px 30px;
-            border-radius: 8px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .process-step:hover {
-            transform: translateY(-10px);
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: var(--accent);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin: 0 auto 20px;
-        }
-
-        .step-title {
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .step-description {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* Contact Page */
-        .contact-page {
-            padding-top: 100px;
-            background: var(--white);
-            min-height: 100vh;
-        }
-
-        .contact-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 60px 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-        }
-
-        .contact-info h3 {
-            font-size: 2rem;
-            margin-bottom: 40px;
-            color: var(--primary);
-        }
-
-        .contact-item {
-            margin-bottom: 30px;
-        }
-
-        .contact-item h4 {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--accent);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .contact-item p {
-            color: var(--text-light);
-            font-size: 1.1rem;
-        }
-
-        .contact-form {
-            background: var(--secondary);
-            padding: 40px;
-            border-radius: 8px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--primary);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            background: var(--white);
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        .submit-btn {
-            background: var(--accent);
-            color: var(--white);
-            padding: 15px 30px;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .submit-btn:hover {
-            background: #b8956a;
-            transform: translateY(-2px);
-        }
-
         /* Loading */
         .loading {
             text-align: center;
@@ -638,17 +561,6 @@
         }
 
         /* Responsive */
-        @media (max-width: 1200px) {
-            .nav-menu {
-                gap: 1rem;
-            }
-            
-            .nav-menu a {
-                font-size: 0.8rem;
-                padding: 5px 10px;
-            }
-        }
-
         @media (max-width: 968px) {
             .menu-toggle {
                 display: flex;
@@ -674,14 +586,17 @@
                 left: 0;
             }
 
+            .nav-menu button {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+
             .hero h1 {
                 font-size: 3rem;
             }
 
             .gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                padding: 0 20px;
-                gap: 10px;
             }
 
             .about-content,
@@ -689,22 +604,9 @@
                 grid-template-columns: 1fr;
             }
 
-            .process-steps {
-                grid-template-columns: 1fr;
-            }
-
+            .process-steps,
             .wedding-services {
                 grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -713,209 +615,28 @@
     <!-- Navigation -->
     <nav class="nav-horizontal">
         <div class="nav-container">
-            <a class="logo" onclick="showPage('home')">Vianney Hastings</a>
+            <button class="logo" onclick="navigate('home')">Vianney Hastings</button>
             <ul class="nav-menu" id="navMenu">
-                <li><a onclick="showPage('home')" class="active">Accueil</a></li>
-                <li><a onclick="showPage('portrait')">Portrait</a></li>
-                <li><a onclick="showPage('mariage')">Mariage</a></li>
-                <li><a onclick="showPage('reportage')">Reportage</a></li>
-                <li><a onclick="showPage('web-services')">Sites Web</a></li>
-                <li><a onclick="showPage('about')">À propos</a></li>
-                <li><a onclick="showPage('contact')">Contact</a></li>
+                <li><button onclick="navigate('home')" class="active">Accueil</button></li>
+                <li><button onclick="navigate('portrait')">Portrait</button></li>
+                <li><button onclick="navigate('mariage')">Mariage</button></li>
+                <li><button onclick="navigate('reportage')">Reportage</button></li>
+                <li><button onclick="navigate('web')">Sites Web</button></li>
+                <li><button onclick="navigate('about')">À propos</button></li>
+                <li><button onclick="navigate('contact')">Contact</button></li>
             </ul>
-            <div class="menu-toggle" onclick="toggleMobileMenu()">
+            <button class="menu-toggle" onclick="toggleMobileMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </nav>
 
-    <!-- Page Accueil -->
-    <div id="home" class="page home-page active">
-        <div class="hero-background"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Vianney Hastings</h1>
-            <p class="subtitle">Photographe Mariages, Événements, Portraits</p>
-            <a class="cta-button" onclick="showPage('portrait')">Découvrir mon travail</a>
-        </div>
-    </div>
+    <!-- Container principal -->
+    <div id="app"></div>
 
-    <!-- Page Portrait -->
-    <div id="portrait" class="page gallery-page">
-        <div class="gallery-header">
-            <h2 class="gallery-title">Portraits</h2>
-            <p class="gallery-subtitle">Capturer l'essence de chaque personnalité dans des portraits authentiques et naturels. Séances en studio ou en extérieur, pour révéler votre vraie nature.</p>
-        </div>
-        <div id="portrait-gallery" class="gallery-grid">
-            <div class="loading">Chargement des images...</div>
-        </div>
-    </div>
-
-    <!-- Page Mariage -->
-    <div id="mariage" class="page gallery-page">
-        <div class="wedding-intro">
-            <div class="wedding-content">
-                <h2 style="font-size: 3rem; font-weight: 300; color: var(--primary); margin-bottom: 30px;">Mariages</h2>
-                <p style="font-size: 1.2rem; color: var(--text-light); line-height: 1.8; margin-bottom: 40px;">
-                    Votre mariage est unique, et chaque instant mérite d'être immortalisé avec élégance. 
-                    Je capture l'authenticité de vos émotions et la beauté de votre célébration, 
-                    créant des souvenirs qui traverseront les générations.
-                </p>
-                
-                <div class="wedding-services">
-                    <div class="wedding-service">
-                        <h3>Préparatifs</h3>
-                        <p>Les moments intimes de préparation, l'émotion des premiers regards, les détails soigneusement choisis.</p>
-                    </div>
-                    <div class="wedding-service">
-                        <h3>Cérémonie</h3>
-                        <p>L'échange des vœux, les larmes de joie, les sourires complices, capturés avec discrétion et sensibilité.</p>
-                    </div>
-                    <div class="wedding-service">
-                        <h3>Réception</h3>
-                        <p>L'ambiance festive, les rires, la danse, tous les moments spontanés qui font la magie de votre soirée.</p>
-                    </div>
-                    <div class="wedding-service">
-                        <h3>Couple</h3>
-                        <p>Des portraits romantiques dans des décors choisis, pour sublimer votre amour dans des images intemporelles.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="gallery-header">
-            <p class="gallery-subtitle">Découvrez une sélection de mes plus beaux mariages</p>
-        </div>
-        <div id="wedding-gallery" class="gallery-grid">
-            <div class="loading">Chargement des images...</div>
-        </div>
-    </div>
-
-    <!-- Page Reportage -->
-    <div id="reportage" class="page gallery-page">
-        <div class="gallery-header">
-            <h2 class="gallery-title">Reportages & Architecture</h2>
-            <p class="gallery-subtitle">Raconter des histoires à travers l'objectif, capturer l'essence des lieux et des moments. De l'architecture moderne aux scènes de vie, chaque image raconte une histoire unique.</p>
-        </div>
-        <div id="reportage-gallery" class="gallery-grid">
-            <div class="loading">Chargement des images...</div>
-        </div>
-    </div>
-
-    <!-- Page Services Web -->
-    <div id="web-services" class="page web-services-page">
-        <div class="web-services-content">
-            <div class="web-services-header">
-                <h2 class="web-services-title">Création de Sites Web</h2>
-                <p class="web-services-intro">
-                    En complément de mes services photographiques, je propose la création de sites web personnalisés pour vos mariages et événements. 
-                    Une présence digitale élégante pour accompagner vos moments précieux, avec possibilité d'intégrer une prestation photo sur site.
-                </p>
-            </div>
-
-            <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">🔍 Qualification du besoin</h3>
-                    <p class="step-description">
-                        Entretien initial approfondi pour comprendre vos objectifs et votre vision. 
-                        Analyse du secteur, étude des concurrents et définition des attentes visuelles 
-                        pour créer un site qui vous ressemble vraiment.
-                    </p>
-                </div>
-
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">🧭 Définition du périmètre</h3>
-                    <p class="step-description">
-                        Choix des fonctionnalités essentielles : galerie photo, formulaire RSVP, blog, carte interactive. 
-                        Sélection des technologies adaptées et du type d'hébergement. 
-                        Possibilité d'inclure une prestation photo professionnelle sur site.
-                    </p>
-                </div>
-
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">🛠️ Création et validation</h3>
-                    <p class="step-description">
-                        Développement du site en environnement de test avec révisions régulières. 
-                        Recette fonctionnelle et visuelle ensemble pour garantir votre satisfaction. 
-                        Tests sur tous les appareils avant validation finale et mise en ligne.
-                    </p>
-                </div>
-
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <h3 class="step-title">🔄 Évolutions post-livraison</h3>
-                    <p class="step-description">
-                        Possibilité de retouches mineures après publication pour perfectionner votre site. 
-                        Forfaits de maintenance disponibles pour la sécurité et les mises à jour. 
-                        Accompagnement à long terme pour faire évoluer votre présence digitale.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Page À propos -->
-    <div id="about" class="page about-page">
-        <div class="about-content">
-            <div class="about-text">
-                <h2 style="font-size: 2.5rem; font-weight: 300; margin-bottom: 30px; color: var(--primary);">À propos</h2>
-                <p>Vianney, 30 ans, photographe de passion, originaire de Nantes, j'ai beaucoup voyagé entre l'Amérique du sud, l'Asie et le Royaume-Uni où j'ai résidé pendant 5 ans.</p>
-                <p>Mon goût pour le voyage m'a donné cette passion pour la photographie que j'ai envie de partager aujourd'hui. J'ai hâte de pouvoir échanger avec vous et de vous accompagner sur chacun de vos projets : portraits, évènements privés et professionnels.</p>
-            </div>
-            
-            <div class="about-image">
-                <img src="https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/Vianney.jpg" 
-                     alt="Portrait de Vianney Hastings" 
-                     loading="lazy">
-            </div>
-        </div>
-    </div>
-
-    <!-- Page Contact -->
-    <div id="contact" class="page contact-page">
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3>Parlons de votre projet</h3>
-                <div class="contact-item">
-                    <h4>Téléphone</h4>
-                    <p>07 67 28 80 86</p>
-                </div>
-                <div class="contact-item">
-                    <h4>Email</h4>
-                    <p>vianneyhastings@gmail.com</p>
-                </div>
-                <div class="contact-item">
-                    <h4>Localisation</h4>
-                    <p>Paris et région parisienne<br>Déplacements possibles en France et à l'étranger</p>
-                </div>
-            </div>
-
-            <div class="contact-form">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="nom">Nom *</label>
-                        <input type="text" id="nom" name="nom" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Décrivez votre projet..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Envoyer le message</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Lightbox avec navigation -->
+    <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
         <span class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1)">‹</span>
@@ -929,157 +650,279 @@
     </div>
 
     <script>
-        // GitHub repository info
-        const GITHUB_REPO = 'EmailSortpro/vianneyphotography';
-        const GITHUB_BRANCH = 'main';
-        
-        // Variables pour la lightbox
+        // État de l'application
+        let currentPage = 'home';
+        let galleryCache = {};
         let currentGalleryImages = [];
         let currentImageIndex = 0;
 
-        // Navigation
-        function showPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
+        // Contenu HTML des pages
+        const pages = {
+            home: `
+                <div class="home-page">
+                    <div class="hero-background"></div>
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <h1>Vianney Hastings</h1>
+                        <p class="subtitle">Photographe Mariages, Événements, Portraits</p>
+                        <button class="cta-button" onclick="navigate('portrait')">Découvrir mon travail</button>
+                    </div>
+                </div>
+            `,
+            portrait: `
+                <div class="gallery-page">
+                    <div class="gallery-header">
+                        <h2 class="gallery-title">Portraits</h2>
+                        <p class="gallery-subtitle">Capturer l'essence de chaque personnalité dans des portraits authentiques et naturels.</p>
+                    </div>
+                    <div id="gallery-content" class="gallery-grid">
+                        <div class="loading">Chargement des images...</div>
+                    </div>
+                </div>
+            `,
+            mariage: `
+                <div class="gallery-page">
+                    <div class="wedding-intro">
+                        <div class="wedding-content">
+                            <h2 style="font-size: 3rem; font-weight: 300; color: var(--primary); margin-bottom: 30px;">Mariages</h2>
+                            <p style="font-size: 1.2rem; color: var(--text-light); line-height: 1.8; margin-bottom: 40px;">
+                                Votre mariage est unique, et chaque instant mérite d'être immortalisé avec élégance.
+                            </p>
+                            <div class="wedding-services">
+                                <div class="wedding-service">
+                                    <h3>Préparatifs</h3>
+                                    <p>Les moments intimes de préparation, l'émotion des premiers regards.</p>
+                                </div>
+                                <div class="wedding-service">
+                                    <h3>Cérémonie</h3>
+                                    <p>L'échange des vœux, les larmes de joie, capturés avec sensibilité.</p>
+                                </div>
+                                <div class="wedding-service">
+                                    <h3>Réception</h3>
+                                    <p>L'ambiance festive et tous les moments spontanés de votre soirée.</p>
+                                </div>
+                                <div class="wedding-service">
+                                    <h3>Couple</h3>
+                                    <p>Des portraits romantiques dans des décors soigneusement choisis.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-header">
+                        <p class="gallery-subtitle">Découvrez une sélection de mes plus beaux mariages</p>
+                    </div>
+                    <div id="gallery-content" class="gallery-grid">
+                        <div class="loading">Chargement des images...</div>
+                    </div>
+                </div>
+            `,
+            reportage: `
+                <div class="gallery-page">
+                    <div class="gallery-header">
+                        <h2 class="gallery-title">Reportages & Architecture</h2>
+                        <p class="gallery-subtitle">Raconter des histoires à travers l'objectif, capturer l'essence des lieux et des moments.</p>
+                    </div>
+                    <div id="gallery-content" class="gallery-grid">
+                        <div class="loading">Chargement des images...</div>
+                    </div>
+                </div>
+            `,
+            web: `
+                <div class="content-page" style="background: var(--white);">
+                    <div class="web-services-content">
+                        <div style="text-align: center; margin-bottom: 80px;">
+                            <h2 style="font-size: 3rem; font-weight: 300; color: var(--primary); margin-bottom: 20px;">Création de Sites Web</h2>
+                            <p style="font-size: 1.2rem; color: var(--text-light); max-width: 700px; margin: 0 auto; line-height: 1.8;">
+                                En complément de mes services photographiques, je propose la création de sites web personnalisés.
+                            </p>
+                        </div>
+                        <div class="process-steps">
+                            <div class="process-step">
+                                <div class="step-number">1</div>
+                                <h3 style="font-size: 1.4rem; color: var(--primary); margin-bottom: 15px;">🔍 Qualification du besoin</h3>
+                                <p style="color: var(--text-light); line-height: 1.6;">
+                                    Entretien initial pour comprendre vos objectifs et créer un site qui vous ressemble.
+                                </p>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-number">2</div>
+                                <h3 style="font-size: 1.4rem; color: var(--primary); margin-bottom: 15px;">🧭 Définition du périmètre</h3>
+                                <p style="color: var(--text-light); line-height: 1.6;">
+                                    Choix des fonctionnalités et technologies. Prestation photo sur site possible.
+                                </p>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-number">3</div>
+                                <h3 style="font-size: 1.4rem; color: var(--primary); margin-bottom: 15px;">🛠️ Création et validation</h3>
+                                <p style="color: var(--text-light); line-height: 1.6;">
+                                    Développement, tests et validation finale avant mise en ligne.
+                                </p>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-number">4</div>
+                                <h3 style="font-size: 1.4rem; color: var(--primary); margin-bottom: 15px;">🔄 Évolutions</h3>
+                                <p style="color: var(--text-light); line-height: 1.6;">
+                                    Retouches et forfaits de maintenance pour faire évoluer votre site.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            about: `
+                <div class="content-page" style="background: var(--secondary);">
+                    <div class="about-content">
+                        <div class="about-text">
+                            <h2 style="font-size: 2.5rem; font-weight: 300; margin-bottom: 30px; color: var(--primary);">À propos</h2>
+                            <p>Vianney, 30 ans, photographe de passion, originaire de Nantes, j'ai beaucoup voyagé entre l'Amérique du sud, l'Asie et le Royaume-Uni où j'ai résidé pendant 5 ans.</p>
+                            <p>Mon goût pour le voyage m'a donné cette passion pour la photographie que j'ai envie de partager aujourd'hui.</p>
+                        </div>
+                        <div class="about-image">
+                            <img src="https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/Vianney.jpg" alt="Portrait de Vianney Hastings">
+                        </div>
+                    </div>
+                </div>
+            `,
+            contact: `
+                <div class="content-page" style="background: var(--white);">
+                    <div class="contact-container">
+                        <div>
+                            <h3 style="font-size: 2rem; margin-bottom: 40px; color: var(--primary);">Parlons de votre projet</h3>
+                            <div style="margin-bottom: 30px;">
+                                <h4 style="font-size: 0.9rem; font-weight: 500; color: var(--accent); margin-bottom: 10px; text-transform: uppercase;">Téléphone</h4>
+                                <p style="color: var(--text-light); font-size: 1.1rem;">07 67 28 80 86</p>
+                            </div>
+                            <div style="margin-bottom: 30px;">
+                                <h4 style="font-size: 0.9rem; font-weight: 500; color: var(--accent); margin-bottom: 10px; text-transform: uppercase;">Email</h4>
+                                <p style="color: var(--text-light); font-size: 1.1rem;">vianneyhastings@gmail.com</p>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 0.9rem; font-weight: 500; color: var(--accent); margin-bottom: 10px; text-transform: uppercase;">Localisation</h4>
+                                <p style="color: var(--text-light); font-size: 1.1rem;">Paris et région parisienne<br>Déplacements possibles</p>
+                            </div>
+                        </div>
+                        <div class="contact-form">
+                            <form onsubmit="handleSubmit(event)">
+                                <div class="form-group">
+                                    <label>Nom *</label>
+                                    <input type="text" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email *</label>
+                                    <input type="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Message</label>
+                                    <textarea rows="5" placeholder="Décrivez votre projet..."></textarea>
+                                </div>
+                                <button type="submit" class="submit-btn">Envoyer le message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            `
+        };
+
+        // Navigation simplifiée
+        function navigate(page) {
+            currentPage = page;
+            
+            // Mettre à jour le contenu
+            document.getElementById('app').innerHTML = pages[page];
+            
+            // Mettre à jour la navigation active
+            document.querySelectorAll('.nav-menu button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(page) || 
+                    (page === 'home' && btn.textContent === 'Accueil') ||
+                    (page === 'web' && btn.textContent === 'Sites Web')) {
+                    btn.classList.add('active');
+                }
             });
             
-            // Show selected page
-            document.getElementById(pageId).classList.add('active');
-            
-            // Update nav active state
-            document.querySelectorAll('.nav-menu a').forEach(link => {
-                link.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Close mobile menu
+            // Fermer le menu mobile
             document.querySelector('.nav-menu').classList.remove('mobile-active');
             document.querySelector('.menu-toggle').classList.remove('active');
             
-            // Load gallery if needed
-            if (pageId === 'portrait' && !document.getElementById('portrait-gallery').hasAttribute('data-loaded')) {
-                loadGallery('portrait', 'portrait-gallery');
-            } else if (pageId === 'mariage' && !document.getElementById('wedding-gallery').hasAttribute('data-loaded')) {
-                loadGallery('wedding', 'wedding-gallery');
-            } else if (pageId === 'reportage' && !document.getElementById('reportage-gallery').hasAttribute('data-loaded')) {
-                loadReportageGallery();
+            // Charger les galeries si nécessaire
+            if (page === 'portrait' || page === 'mariage' || page === 'reportage') {
+                loadGalleryForPage(page);
             }
             
             // Scroll to top
             window.scrollTo(0, 0);
         }
 
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const navMenu = document.querySelector('.nav-menu');
-            const menuToggle = document.querySelector('.menu-toggle');
+        // Chargement optimisé des galeries
+        async function loadGalleryForPage(page) {
+            const container = document.getElementById('gallery-content');
+            if (!container) return;
             
-            navMenu.classList.toggle('mobile-active');
-            menuToggle.classList.toggle('active');
-        }
-
-        // Load gallery from GitHub
-        async function loadGallery(folder, containerId) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = '<div class="loading">Chargement des images...</div>';
+            // Utiliser le cache si disponible
+            if (galleryCache[page]) {
+                displayGallery(galleryCache[page], container);
+                return;
+            }
             
             try {
-                // Fetch the folder contents from GitHub API
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${folder}`);
-                const files = await response.json();
+                let urls = [];
                 
-                // Filter image files
-                const imageFiles = files.filter(file => 
-                    /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name)
-                );
+                if (page === 'portrait') {
+                    urls = ['portrait'];
+                } else if (page === 'mariage') {
+                    urls = ['wedding'];
+                } else if (page === 'reportage') {
+                    urls = ['reportage', 'archi'];
+                }
                 
-                // Clear loading message
-                container.innerHTML = '';
+                const allImages = [];
                 
-                // Store images for this gallery
-                const galleryImages = [];
-                
-                // Create gallery items
-                imageFiles.forEach((file, index) => {
-                    galleryImages.push(file.download_url);
+                for (const folder of urls) {
+                    const response = await fetch(`https://api.github.com/repos/EmailSortpro/vianneyphotography/contents/${folder}`);
+                    const files = await response.json();
                     
-                    const item = document.createElement('div');
-                    item.className = 'gallery-item';
-                    item.onclick = () => openLightbox(galleryImages, index);
+                    const imageFiles = files.filter(file => 
+                        /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name)
+                    ).slice(0, 20); // Limiter à 20 images par dossier pour la performance
                     
-                    const img = document.createElement('img');
-                    img.src = file.download_url;
-                    img.alt = `Photo ${folder}`;
-                    img.loading = 'lazy';
-                    
-                    item.appendChild(img);
-                    container.appendChild(item);
-                });
+                    allImages.push(...imageFiles);
+                }
                 
-                // Mark as loaded
-                container.setAttribute('data-loaded', 'true');
+                // Mettre en cache
+                galleryCache[page] = allImages;
+                
+                // Afficher
+                displayGallery(allImages, container);
                 
             } catch (error) {
-                console.error('Error loading gallery:', error);
-                container.innerHTML = '<div class="loading">Erreur lors du chargement des images</div>';
+                console.error('Erreur:', error);
+                container.innerHTML = '<div class="loading">Erreur lors du chargement</div>';
             }
         }
 
-        // Load reportage gallery (combines reportage and archi folders)
-        async function loadReportageGallery() {
-            const container = document.getElementById('reportage-gallery');
-            container.innerHTML = '<div class="loading">Chargement des images...</div>';
+        // Affichage de la galerie
+        function displayGallery(images, container) {
+            container.innerHTML = '';
+            const imageUrls = [];
             
-            try {
-                // Fetch both folders
-                const [reportageResponse, archiResponse] = await Promise.all([
-                    fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/reportage`),
-                    fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/archi`)
-                ]);
+            images.forEach((file, index) => {
+                imageUrls.push(file.download_url);
                 
-                const reportageFiles = await reportageResponse.json();
-                const archiFiles = await archiResponse.json();
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.onclick = () => openLightbox(imageUrls, index);
                 
-                // Combine and filter image files
-                const allFiles = [...reportageFiles, ...archiFiles];
-                const imageFiles = allFiles.filter(file => 
-                    /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name)
-                );
+                const img = document.createElement('img');
+                img.src = file.download_url;
+                img.alt = 'Photo';
+                img.loading = 'lazy';
                 
-                // Clear loading message
-                container.innerHTML = '';
-                
-                // Store images for this gallery
-                const galleryImages = [];
-                
-                // Create gallery items
-                imageFiles.forEach((file, index) => {
-                    galleryImages.push(file.download_url);
-                    
-                    const item = document.createElement('div');
-                    item.className = 'gallery-item';
-                    item.onclick = () => openLightbox(galleryImages, index);
-                    
-                    const img = document.createElement('img');
-                    img.src = file.download_url;
-                    img.alt = 'Photo reportage';
-                    img.loading = 'lazy';
-                    
-                    item.appendChild(img);
-                    container.appendChild(item);
-                });
-                
-                // Mark as loaded
-                container.setAttribute('data-loaded', 'true');
-                
-            } catch (error) {
-                console.error('Error loading reportage gallery:', error);
-                container.innerHTML = '<div class="loading">Erreur lors du chargement des images</div>';
-            }
+                item.appendChild(img);
+                container.appendChild(item);
+            });
         }
 
-        // Lightbox functions avec navigation
+        // Lightbox
         function openLightbox(images, index) {
             currentGalleryImages = images;
             currentImageIndex = index;
@@ -1096,14 +939,11 @@
 
         function changeLightboxImage(direction) {
             currentImageIndex += direction;
-            
-            // Loop around
             if (currentImageIndex < 0) {
                 currentImageIndex = currentGalleryImages.length - 1;
             } else if (currentImageIndex >= currentGalleryImages.length) {
                 currentImageIndex = 0;
             }
-            
             updateLightboxImage();
         }
 
@@ -1112,62 +952,39 @@
             document.body.style.overflow = '';
         }
 
-        // Keyboard navigation for lightbox
+        // Menu mobile
+        function toggleMobileMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            navMenu.classList.toggle('mobile-active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // Formulaire
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('.submit-btn');
+            btn.textContent = 'Message envoyé !';
+            btn.style.background = '#4CAF50';
+            setTimeout(() => {
+                btn.textContent = 'Envoyer le message';
+                btn.style.background = '';
+                e.target.reset();
+            }, 3000);
+        }
+
+        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             const lightbox = document.getElementById('lightbox');
             if (lightbox.classList.contains('active')) {
-                if (e.key === 'Escape') {
-                    closeLightbox();
-                } else if (e.key === 'ArrowLeft') {
-                    changeLightboxImage(-1);
-                } else if (e.key === 'ArrowRight') {
-                    changeLightboxImage(1);
-                }
+                if (e.key === 'Escape') closeLightbox();
+                else if (e.key === 'ArrowLeft') changeLightboxImage(-1);
+                else if (e.key === 'ArrowRight') changeLightboxImage(1);
             }
         });
 
-        // Close lightbox on background click
-        document.getElementById('lightbox').addEventListener('click', (e) => {
-            if (e.target.id === 'lightbox') {
-                closeLightbox();
-            }
-        });
-
-        // Contact form
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const btn = this.querySelector('.submit-btn');
-            const originalText = btn.textContent;
-            
-            btn.textContent = 'Envoi en cours...';
-            btn.disabled = true;
-            
-            // Simulate form submission
-            setTimeout(() => {
-                btn.textContent = 'Message envoyé !';
-                btn.style.background = '#4CAF50';
-                this.reset();
-                
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.background = '';
-                    btn.disabled = false;
-                }, 3000);
-            }, 1500);
-        });
-
-        // Navbar effect on scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.nav-horizontal');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = 'none';
-            }
-        });
+        // Initialisation
+        navigate('home');
     </script>
 </body>
 </html>
