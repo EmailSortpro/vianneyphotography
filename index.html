@@ -916,10 +916,11 @@
             container.innerHTML = '<div class="loading">Chargement...</div>';
             
             try {
+                console.log(`Chargement du dossier: ${folderName}`);
                 const response = await fetch(`https://api.github.com/repos/EmailSortpro/vianneyphotography/contents/${folderName}`);
                 
                 if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
+                    throw new Error(`HTTP ${response.status} - Dossier ${folderName} introuvable`);
                 }
                 
                 const files = await response.json();
@@ -936,7 +937,7 @@
                 // Afficher la galerie
                 displayGallery(imageFiles, container);
                 
-                console.log(`${imageFiles.length} images chargées depuis ${folderName}`);
+                console.log(`✓ ${imageFiles.length} images chargées depuis ${folderName}`);
                 
             } catch (error) {
                 console.error(`Erreur lors du chargement de ${folderName}:`, error);
@@ -958,11 +959,17 @@
             container.innerHTML = '<div class="loading">Chargement...</div>';
             
             try {
+                console.log('Chargement des dossiers reportage et archi...');
+                
                 // Charger les deux dossiers en parallèle
                 const [reportageResponse, archiResponse] = await Promise.all([
                     fetch('https://api.github.com/repos/EmailSortpro/vianneyphotography/contents/reportage'),
                     fetch('https://api.github.com/repos/EmailSortpro/vianneyphotography/contents/archi')
                 ]);
+                
+                if (!reportageResponse.ok || !archiResponse.ok) {
+                    throw new Error('Erreur lors du chargement des dossiers');
+                }
                 
                 const reportageFiles = await reportageResponse.json();
                 const archiFiles = await archiResponse.json();
@@ -983,11 +990,11 @@
                 // Afficher
                 displayGallery(allImages, container);
                 
-                console.log(`${allImages.length} images chargées (reportage + archi)`);
+                console.log(`✓ ${reportageImages.length} images de reportage + ${archiImages.length} images d'architecture = ${allImages.length} images totales`);
                 
             } catch (error) {
                 console.error('Erreur lors du chargement reportage/archi:', error);
-                container.innerHTML = '<div class="error">Erreur de chargement</div>';
+                container.innerHTML = '<div class="error">Erreur de chargement des reportages</div>';
             }
         }
 
