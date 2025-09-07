@@ -219,7 +219,7 @@
             border-radius: 8px;
         }
 
-        /* Gallery Grid */
+        /* Gallery Grid Optimisé */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -234,17 +234,186 @@
             background: #f0f0f0;
             cursor: pointer;
             aspect-ratio: 1;
+            border-radius: 4px;
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .gallery-item img.loaded {
+            opacity: 1;
         }
 
         .gallery-item:hover img {
             transform: scale(1.1);
+        }
+
+        /* Skeleton loader */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Galerie Modale Améliorée */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 2001;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            transition: background 0.3s ease;
+            user-select: none;
+        }
+
+        .modal-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        .modal-counter {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        /* Thumbnails en bas */
+        .modal-thumbnails {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            max-width: 80%;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        .modal-thumbnail {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .modal-thumbnail.active,
+        .modal-thumbnail:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* Loading spinner */
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
         /* Wedding Section */
@@ -351,38 +520,6 @@
             width: 100%;
         }
 
-        /* Lightbox */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90vh;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            font-size: 3rem;
-            color: white;
-            cursor: pointer;
-        }
-
         /* Mobile */
         @media (max-width: 768px) {
             .nav-menu {
@@ -400,6 +537,10 @@
             
             .gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .modal-thumbnails {
+                display: none;
             }
         }
     </style>
@@ -442,7 +583,7 @@
                 <p>Mon goût pour le voyage m'a donné cette passion pour la photographie que j'ai envie de partager aujourd'hui. J'ai hâte de pouvoir échanger avec vous et de vous accompagner sur chacun de vos projets.</p>
             </div>
             <div class="about-image">
-                <img src="https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/Vianney.jpg" alt="Vianney">
+                <img src="https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/Vianney.jpg" alt="Vianney" loading="lazy">
             </div>
         </div>
     </section>
@@ -544,227 +685,452 @@
         </div>
     </section>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-close">&times;</span>
-        <img id="lightbox-img" src="" alt="">
+    <!-- Gallery Modal -->
+    <div class="gallery-modal" id="galleryModal">
+        <span class="modal-close" onclick="closeGallery()">&times;</span>
+        <div class="modal-content">
+            <div class="loading-spinner" id="modalSpinner"></div>
+            <button class="modal-nav modal-prev" onclick="navigateGallery(-1)">‹</button>
+            <img class="modal-image" id="modalImage" src="" alt="">
+            <button class="modal-nav modal-next" onclick="navigateGallery(1)">›</button>
+        </div>
+        <div class="modal-thumbnails" id="modalThumbnails"></div>
+        <div class="modal-counter" id="modalCounter"></div>
     </div>
 
     <script>
-        // Base URL pour toutes les images
+        // Configuration optimisée
         const baseURL = 'https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/';
+        const imageCache = new Map();
+        let currentGallery = [];
+        let currentIndex = 0;
+        let preloadQueue = [];
 
-        // Fonction optimisée pour créer une image avec lazy loading réel
-        function createGalleryItem(src) {
+        // Optimisation du chargement des images
+        class ImageOptimizer {
+            constructor() {
+                this.loadedImages = new Set();
+                this.loadingImages = new Map();
+            }
+
+            async loadImage(src, priority = false) {
+                if (this.loadedImages.has(src)) {
+                    return src;
+                }
+
+                if (this.loadingImages.has(src)) {
+                    return this.loadingImages.get(src);
+                }
+
+                const promise = new Promise((resolve, reject) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        this.loadedImages.add(src);
+                        this.loadingImages.delete(src);
+                        resolve(src);
+                    };
+                    img.onerror = () => {
+                        this.loadingImages.delete(src);
+                        reject();
+                    };
+                    
+                    if (priority) {
+                        img.loading = 'eager';
+                    } else {
+                        img.loading = 'lazy';
+                    }
+                    
+                    img.src = src;
+                });
+
+                this.loadingImages.set(src, promise);
+                return promise;
+            }
+
+            preloadImages(urls) {
+                urls.forEach(url => {
+                    if (!this.loadedImages.has(url)) {
+                        this.loadImage(url, false);
+                    }
+                });
+            }
+        }
+
+        const imageOptimizer = new ImageOptimizer();
+
+        // Création optimisée des éléments de galerie
+        function createOptimizedGalleryItem(src, index, galleryName) {
             const div = document.createElement('div');
-            div.className = 'gallery-item';
+            div.className = 'gallery-item skeleton';
             
             const img = document.createElement('img');
-            // Placeholder léger en base64
-            img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"%3E%3Crect width="400" height="400" fill="%23f0f0f0"/%3E%3C/svg%3E';
             img.dataset.src = src;
-            img.loading = 'lazy';
-            img.decoding = 'async';
+            img.dataset.index = index;
+            img.dataset.gallery = galleryName;
+            img.alt = `Photo ${index + 1}`;
             
             div.appendChild(img);
-            div.onclick = () => openLightbox(src);
+            div.onclick = () => openGallery(galleryName, index);
             
             return div;
         }
 
-        // Observer pour le lazy loading optimisé
+        // Observer intersection amélioré
         const imageObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                        delete img.dataset.src;
+                    if (img.dataset.src && !img.src) {
+                        loadImageWithFallback(img);
                         imageObserver.unobserve(img);
                     }
                 }
             });
         }, {
-            rootMargin: '50px'
+            rootMargin: '100px',
+            threshold: 0.01
         });
 
-        // Charger Portrait - Chargement progressif
-        function loadPortrait() {
-            const container = document.getElementById('portrait-gallery');
-            const images = [
-                'Alexandra%20and%20Janine.jpg',
-                'Alexandra.jpg',
-                'DSC00045.jpg',
-                'DSC00272-scaled.jpg',
-                'DSC03483.jpg',
-                'DSC03537.jpg',
-                'DSC03805.jpg',
-                'DSC04454.jpg',
-                'DSC04714.jpg',
-                'DSC04822%20-%20Copy.jpg',
-                'DSC04874%20(2)%20-%20Copy.jpg',
-                'DSC05065.jpg',
-                'DSC06155.jpg',
-                'DSC06285%20(1).jpg',
-                'DSC06580.jpg',
-                'DSC07129.jpg',
-                'DSC08608-scaled.jpg',
-                'DSC09922.jpg'
-            ];
-            
-            loadGalleryBatch(images, container, 'portrait/');
+        // Chargement avec fallback
+        async function loadImageWithFallback(img) {
+            const src = img.dataset.src;
+            try {
+                await imageOptimizer.loadImage(src);
+                img.src = src;
+                img.classList.add('loaded');
+                img.parentElement.classList.remove('skeleton');
+                
+                // Précharger les images suivantes
+                const gallery = img.dataset.gallery;
+                const index = parseInt(img.dataset.index);
+                preloadNearbyImages(gallery, index);
+            } catch (error) {
+                console.error('Erreur chargement image:', src);
+                img.parentElement.style.display = 'none';
+            }
         }
 
-        // Charger Wedding - Chargement progressif
-        function loadWedding() {
-            const container = document.getElementById('wedding-gallery');
-            const images = [
-                'DSC00018.jpg',
-                'DSC00053.jpg',
-                'DSC00093%20(1).jpg',
-                'DSC03697%20-%20Copy%20-%20Copy.jpg',
-                'DSC03715.jpg',
-                'DSC03743.jpg',
-                'DSC03747.jpg',
-                'DSC03765.jpg',
-                'DSC03772.jpg',
-                'DSC03792.jpg',
-                'DSC03816.jpg',
-                'DSC03817.jpg',
-                'DSC03876.jpg',
-                'DSC03879.jpg',
-                'DSC03898.jpg',
-                'DSC03924.jpg',
-                'DSC03965.jpg',
-                'DSC03994.jpg',
-                'DSC04019.jpg',
-                'DSC04056.jpg',
-                'DSC05142.jpg',
-                'DSC05188.jpg',
-                'DSC05217.jpg',
-                'DSC05242.jpg',
-                'DSC05250.jpg',
-                'DSC05264.jpg',
-                'DSC05266.jpg',
-                'DSC05283.jpg',
-                'DSC05338.jpg',
-                'DSC05361.jpg',
-                'DSC05451.jpg',
-                'DSC05462.jpg',
-                'DSC09717.jpg',
-                'DSC09731.jpg',
-                'DSC09746.jpg',
-                'DSC09747.jpg',
-                'DSC09750.jpg',
-                'DSC09753.jpg',
-                'DSC09910.jpg',
-                'Wedding%20Ele%20and%20PE%20(1).jpg',
-                'Wedding%20Ele%20and%20PE%20(2).jpg',
-                'Wedding%20Ele%20and%20PE.jpg',
-                'Wedding%20Francois%20et%20Louise%20(1).jpg',
-                'Wedding%20Francois%20et%20Louise%20(2).jpg',
-                'Wedding%20Francois%20et%20Louise%20(5).jpg',
-                'Wedding%20Francois%20et%20Louise%20(7).jpg',
-                'Wedding%20Francois%20et%20Louise.jpg',
-                'WhatsApp%20Image%202020-09-21%20at%2014.42.43.jpeg',
-                'WhatsApp%20Image%202020-09-22%20at%2015.21.45.jpeg',
-                'WhatsApp%20Image%202020-09-22%20at%2015.23.13.jpeg'
-            ];
+        // Préchargement intelligent
+        function preloadNearbyImages(galleryName, index) {
+            const gallery = galleries[galleryName];
+            if (!gallery) return;
             
-            loadGalleryBatch(images, container, 'wedding/');
+            const preloadRange = 3;
+            const imagesToPreload = [];
+            
+            for (let i = 1; i <= preloadRange; i++) {
+                if (index + i < gallery.length) {
+                    imagesToPreload.push(baseURL + gallery[index + i]);
+                }
+                if (index - i >= 0) {
+                    imagesToPreload.push(baseURL + gallery[index - i]);
+                }
+            }
+            
+            imageOptimizer.preloadImages(imagesToPreload);
         }
 
-        // Charger Reportage - Chargement progressif
-        function loadReportage() {
-            const container = document.getElementById('reportage-gallery');
-            const images = [
-                '0.jpg',
-                '1.jpg',
-                '113.jpg',
-                '2.1.jpg',
-                '2.jpg',
-                '21.jpg',
-                '3.jpg',
-                '40.jpg',
-                '50.jpg',
-                '6-2.jpg',
-                '7.jpg',
-                '8.11.jpg',
-                'WhatsApp%20Image%202024-11-06%20at%2010.30.27_8379ed0e.jpg',
-                'WhatsApp%20Image%202024-11-06%20at%2010.30.27_dba4a475.jpg',
-                'WhatsApp%20Image%202024-11-06%20at%2010.30.28_01a1ff6e.jpg',
-                'WhatsApp%20Image%202024-11-06%20at%2010.30.28_069ac2f4.jpg',
-                'WhatsApp%20Image%202024-11-06%20at%2010.30.28_3f6d57e4.jpg',
-                'WhatsApp%20Image%202024-11-06%20at%2010.30.28_4bc78b67.jpg',
-                'WhatsApp%20Image%202024-11-06%20at%2010.30.28_4d7414d7.jpg',
-                'WhatsApp%20Image%202024-11-06%20at%2010.30.28_55211dc9.jpg',
-                'WhatsApp%20Image%202024-11-06%20at%2010.30.28_57d726bb.jpg',
-                'WhatsApp%20Image%202024-11-06%20at%2010.30.28_715f2551.jpg',
-                'WhatsApp%20Image%202024-11-06%20at%2010.30.28_e7b2e9b5.jpg',
-                'WhatsApp%20Image%202024-11-06%20at%2010.30.29_e0978609.jpg'
-            ];
-            
-            loadGalleryBatch(images, container, 'reportage/');
-        }
+        // Galeries
+        const galleries = {
+            portrait: [
+                'portrait/Alexandra%20and%20Janine.jpg',
+                'portrait/Alexandra.jpg',
+                'portrait/DSC00045.jpg',
+                'portrait/DSC00272-scaled.jpg',
+                'portrait/DSC03483.jpg',
+                'portrait/DSC03537.jpg',
+                'portrait/DSC03805.jpg',
+                'portrait/DSC04454.jpg',
+                'portrait/DSC04714.jpg',
+                'portrait/DSC04822%20-%20Copy.jpg',
+                'portrait/DSC04874%20(2)%20-%20Copy.jpg',
+                'portrait/DSC05065.jpg',
+                'portrait/DSC06155.jpg',
+                'portrait/DSC06285%20(1).jpg',
+                'portrait/DSC06580.jpg',
+                'portrait/DSC07129.jpg',
+                'portrait/DSC08608-scaled.jpg',
+                'portrait/DSC09922.jpg'
+            ],
+            wedding: [
+                'wedding/DSC00018.jpg',
+                'wedding/DSC00053.jpg',
+                'wedding/DSC00093%20(1).jpg',
+                'wedding/DSC03697%20-%20Copy%20-%20Copy.jpg',
+                'wedding/DSC03715.jpg',
+                'wedding/DSC03743.jpg',
+                'wedding/DSC03747.jpg',
+                'wedding/DSC03765.jpg',
+                'wedding/DSC03772.jpg',
+                'wedding/DSC03792.jpg',
+                'wedding/DSC03816.jpg',
+                'wedding/DSC03817.jpg',
+                'wedding/DSC03876.jpg',
+                'wedding/DSC03879.jpg',
+                'wedding/DSC03898.jpg',
+                'wedding/DSC03924.jpg',
+                'wedding/DSC03965.jpg',
+                'wedding/DSC03994.jpg',
+                'wedding/DSC04019.jpg',
+                'wedding/DSC04056.jpg',
+                'wedding/DSC05142.jpg',
+                'wedding/DSC05188.jpg',
+                'wedding/DSC05217.jpg',
+                'wedding/DSC05242.jpg',
+                'wedding/DSC05250.jpg',
+                'wedding/DSC05264.jpg',
+                'wedding/DSC05266.jpg',
+                'wedding/DSC05283.jpg',
+                'wedding/DSC05338.jpg',
+                'wedding/DSC05361.jpg',
+                'wedding/DSC05451.jpg',
+                'wedding/DSC05462.jpg',
+                'wedding/DSC09717.jpg',
+                'wedding/DSC09731.jpg',
+                'wedding/DSC09746.jpg',
+                'wedding/DSC09747.jpg',
+                'wedding/DSC09750.jpg',
+                'wedding/DSC09753.jpg',
+                'wedding/DSC09910.jpg',
+                'wedding/Wedding%20Ele%20and%20PE%20(1).jpg',
+                'wedding/Wedding%20Ele%20and%20PE%20(2).jpg',
+                'wedding/Wedding%20Ele%20and%20PE.jpg',
+                'wedding/Wedding%20Francois%20et%20Louise%20(1).jpg',
+                'wedding/Wedding%20Francois%20et%20Louise%20(2).jpg',
+                'wedding/Wedding%20Francois%20et%20Louise%20(5).jpg',
+                'wedding/Wedding%20Francois%20et%20Louise%20(7).jpg',
+                'wedding/Wedding%20Francois%20et%20Louise.jpg',
+                'wedding/WhatsApp%20Image%202020-09-21%20at%2014.42.43.jpeg',
+                'wedding/WhatsApp%20Image%202020-09-22%20at%2015.21.45.jpeg',
+                'wedding/WhatsApp%20Image%202020-09-22%20at%2015.23.13.jpeg'
+            ],
+            reportage: [
+                'reportage/0.jpg',
+                'reportage/1.jpg',
+                'reportage/113.jpg',
+                'reportage/2.1.jpg',
+                'reportage/2.jpg',
+                'reportage/21.jpg',
+                'reportage/3.jpg',
+                'reportage/40.jpg',
+                'reportage/50.jpg',
+                'reportage/6-2.jpg',
+                'reportage/7.jpg',
+                'reportage/8.11.jpg',
+                'reportage/WhatsApp%20Image%202024-11-06%20at%2010.30.27_8379ed0e.jpg',
+                'reportage/WhatsApp%20Image%202024-11-06%20at%2010.30.27_dba4a475.jpg',
+                'reportage/WhatsApp%20Image%202024-11-06%20at%2010.30.28_01a1ff6e.jpg',
+                'reportage/WhatsApp%20Image%202024-11-06%20at%2010.30.28_069ac2f4.jpg',
+                'reportage/WhatsApp%20Image%202024-11-06%20at%2010.30.28_3f6d57e4.jpg',
+                'reportage/WhatsApp%20Image%202024-11-06%20at%2010.30.28_4bc78b67.jpg',
+                'reportage/WhatsApp%20Image%202024-11-06%20at%2010.30.28_4d7414d7.jpg',
+                'reportage/WhatsApp%20Image%202024-11-06%20at%2010.30.28_55211dc9.jpg',
+                'reportage/WhatsApp%20Image%202024-11-06%20at%2010.30.28_57d726bb.jpg',
+                'reportage/WhatsApp%20Image%202024-11-06%20at%2010.30.28_715f2551.jpg',
+                'reportage/WhatsApp%20Image%202024-11-06%20at%2010.30.28_e7b2e9b5.jpg',
+                'reportage/WhatsApp%20Image%202024-11-06%20at%2010.30.29_e0978609.jpg'
+            ]
+        };
 
-        // Fonction pour charger les images par batch
-        function loadGalleryBatch(images, container, folder) {
+        // Chargement des galeries
+        function loadGallery(galleryName, containerId) {
+            const container = document.getElementById(containerId);
+            const images = galleries[galleryName];
+            
+            if (!container || !images) return;
+            
             const fragment = document.createDocumentFragment();
             
-            images.forEach(img => {
-                const item = createGalleryItem(baseURL + folder + img);
+            images.forEach((imagePath, index) => {
+                const item = createOptimizedGalleryItem(
+                    baseURL + imagePath,
+                    index,
+                    galleryName
+                );
                 fragment.appendChild(item);
             });
             
             container.appendChild(fragment);
             
-            // Observer toutes les images pour le lazy loading
+            // Observer les images
             container.querySelectorAll('img').forEach(img => {
                 imageObserver.observe(img);
             });
         }
 
-        // Lightbox optimisée
-        function openLightbox(src) {
-            const lightbox = document.getElementById('lightbox');
-            const img = document.getElementById('lightbox-img');
+        // Système de galerie modale amélioré
+        function openGallery(galleryName, index) {
+            currentGallery = galleries[galleryName].map(path => baseURL + path);
+            currentIndex = index;
             
-            // Afficher la lightbox d'abord
-            lightbox.classList.add('active');
+            const modal = document.getElementById('galleryModal');
+            modal.classList.add('active');
             
-            // Charger l'image après
-            img.src = src;
+            updateGalleryView();
+            createThumbnails();
+            
+            // Précharger les images adjacentes
+            preloadAdjacentImages();
         }
 
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            const img = document.getElementById('lightbox-img');
+        function updateGalleryView() {
+            const modalImage = document.getElementById('modalImage');
+            const spinner = document.getElementById('modalSpinner');
+            const counter = document.getElementById('modalCounter');
             
-            lightbox.classList.remove('active');
-            // Nettoyer l'image après fermeture
+            spinner.style.display = 'block';
+            modalImage.style.display = 'none';
+            
+            const imageSrc = currentGallery[currentIndex];
+            
+            imageOptimizer.loadImage(imageSrc, true).then(() => {
+                modalImage.src = imageSrc;
+                modalImage.onload = () => {
+                    spinner.style.display = 'none';
+                    modalImage.style.display = 'block';
+                };
+            });
+            
+            counter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
+            
+            // Mettre à jour les thumbnails actifs
+            updateActiveThumbnail();
+        }
+
+        function createThumbnails() {
+            const container = document.getElementById('modalThumbnails');
+            container.innerHTML = '';
+            
+            currentGallery.forEach((src, index) => {
+                const thumb = document.createElement('img');
+                thumb.className = 'modal-thumbnail';
+                thumb.src = src;
+                thumb.onclick = () => {
+                    currentIndex = index;
+                    updateGalleryView();
+                };
+                
+                if (index === currentIndex) {
+                    thumb.classList.add('active');
+                }
+                
+                container.appendChild(thumb);
+            });
+        }
+
+        function updateActiveThumbnail() {
+            const thumbs = document.querySelectorAll('.modal-thumbnail');
+            thumbs.forEach((thumb, index) => {
+                thumb.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function navigateGallery(direction) {
+            currentIndex = (currentIndex + direction + currentGallery.length) % currentGallery.length;
+            updateGalleryView();
+            preloadAdjacentImages();
+        }
+
+        function preloadAdjacentImages() {
+            const preloadIndices = [
+                currentIndex - 2,
+                currentIndex - 1,
+                currentIndex + 1,
+                currentIndex + 2
+            ];
+            
+            preloadIndices.forEach(index => {
+                if (index >= 0 && index < currentGallery.length) {
+                    imageOptimizer.loadImage(currentGallery[index]);
+                }
+            });
+        }
+
+        function closeGallery() {
+            const modal = document.getElementById('galleryModal');
+            modal.classList.remove('active');
+            
             setTimeout(() => {
-                img.src = '';
+                document.getElementById('modalImage').src = '';
+                document.getElementById('modalThumbnails').innerHTML = '';
             }, 300);
         }
 
-        // Initialisation optimisée
-        document.addEventListener('DOMContentLoaded', () => {
-            // Charger d'abord Portrait qui est visible
-            loadPortrait();
-            
-            // Charger les autres galeries après un délai
-            setTimeout(() => {
-                loadWedding();
-                loadReportage();
-            }, 500);
-        });
-
-        // Fermer lightbox avec Escape
+        // Raccourcis clavier
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeLightbox();
+            const modal = document.getElementById('galleryModal');
+            if (!modal.classList.contains('active')) return;
+            
+            switch(e.key) {
+                case 'Escape':
+                    closeGallery();
+                    break;
+                case 'ArrowLeft':
+                    navigateGallery(-1);
+                    break;
+                case 'ArrowRight':
+                    navigateGallery(1);
+                    break;
             }
         });
+
+        // Swipe pour mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.getElementById('galleryModal').addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.getElementById('galleryModal').addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    navigateGallery(1); // Swipe left = next
+                } else {
+                    navigateGallery(-1); // Swipe right = prev
+                }
+            }
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            // Charger les galeries avec priorité
+            loadGallery('portrait', 'portrait-gallery');
+            
+            // Charger les autres galeries après un court délai
+            setTimeout(() => {
+                loadGallery('wedding', 'wedding-gallery');
+                loadGallery('reportage', 'reportage-gallery');
+            }, 100);
+            
+            // Précharger quelques images importantes
+            imageOptimizer.preloadImages([
+                baseURL + 'DSC03748.jpg',
+                baseURL + 'Vianney.jpg'
+            ]);
+        });
+
+        // Optimisation de la performance
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => {
+                // Précharger plus d'images quand le navigateur est inactif
+                const allImages = [
+                    ...galleries.portrait.slice(0, 5),
+                    ...galleries.wedding.slice(0, 5),
+                    ...galleries.reportage.slice(0, 5)
+                ].map(path => baseURL + path);
+                
+                imageOptimizer.preloadImages(allImages);
+            });
+        }
     </script>
 </body>
 </html>
