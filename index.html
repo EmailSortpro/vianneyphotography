@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vianney Hastings - Photographe & Créateur de sites web</title>
-    <meta name="description" content="Photographe professionnel spécialisé dans les mariages, événements et portraits. Créateur de sites web. Paris et région parisienne.">
     <style>
         * {
             margin: 0;
@@ -18,7 +17,6 @@
             --accent: #c9a96e;
             --text-light: #666;
             --white: #ffffff;
-            --black: #000000;
         }
 
         html {
@@ -30,10 +28,9 @@
             line-height: 1.6;
             color: var(--primary);
             background: var(--white);
-            overflow-x: hidden;
         }
 
-        /* Navigation fixe */
+        /* Navigation */
         .nav-horizontal {
             position: fixed;
             top: 0;
@@ -44,7 +41,6 @@
             border-bottom: 1px solid #eee;
             z-index: 1000;
             padding: 15px 0;
-            transition: all 0.3s ease;
         }
 
         .nav-container {
@@ -57,17 +53,15 @@
         }
 
         .logo {
-            background: none;
-            border: none;
-            font-family: inherit;
             font-size: 1.4rem;
             font-weight: 500;
             color: var(--primary);
             cursor: pointer;
-            white-space: nowrap;
             padding: 6px 12px;
             border-radius: 20px;
             transition: all 0.3s ease;
+            background: none;
+            border: none;
         }
 
         .logo:hover {
@@ -81,11 +75,9 @@
             gap: 1.5rem;
         }
 
-        .nav-menu button {
-            background: none;
-            border: none;
+        .nav-menu a {
             color: var(--primary);
-            font-family: inherit;
+            text-decoration: none;
             font-size: 0.85rem;
             font-weight: 400;
             padding: 6px 12px;
@@ -93,52 +85,23 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            cursor: pointer;
-            white-space: nowrap;
         }
 
-        .nav-menu button:hover,
-        .nav-menu button.active {
+        .nav-menu a:hover,
+        .nav-menu a.active {
             background: var(--accent);
             color: var(--white);
         }
 
-        /* Menu mobile */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 4px;
-            cursor: pointer;
-            padding: 8px;
-            background: none;
-            border: none;
-        }
-        
-        .menu-toggle span {
-            width: 25px;
-            height: 2px;
-            background: var(--primary);
-            transition: all 0.3s ease;
-        }
-
-        /* Container principal */
-        #app {
-            width: 100%;
-        }
-
-        .section {
-            width: 100%;
-        }
-
         /* Hero Section */
-        .home-section {
+        #home {
             position: relative;
             width: 100%;
             height: 100vh;
-            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
 
         .hero-background {
@@ -149,8 +112,7 @@
             height: 100%;
             background-image: url('https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/DSC03748.jpg');
             background-size: cover;
-            background-position: center 35%;
-            background-repeat: no-repeat;
+            background-position: center;
             z-index: 1;
         }
 
@@ -172,32 +134,23 @@
             padding: 0 20px;
         }
 
-        .hero h1 {
+        .hero-content h1 {
             font-size: 4.5rem;
             font-weight: 300;
             margin-bottom: 20px;
-            letter-spacing: -1px;
-            animation: fadeInUp 1.5s ease-out;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        .hero .subtitle {
+        .hero-content p {
             font-size: 1.4rem;
             margin-bottom: 10px;
             font-weight: 300;
-            letter-spacing: 1px;
-            animation: fadeInUp 1.5s ease-out 0.3s both;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
-        .hero .subtitle2 {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-            animation: fadeInUp 1.5s ease-out 0.5s both;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        .subtitle2 {
             color: var(--accent);
+            font-size: 1.2rem;
         }
 
         .cta-button {
@@ -211,34 +164,39 @@
             font-weight: 500;
             font-size: 1rem;
             transition: all 0.3s ease;
-            animation: fadeInUp 1.5s ease-out 0.9s both;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-decoration: none;
             cursor: pointer;
         }
 
         .cta-button:hover {
             background: var(--primary);
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Sections */
+        section {
+            padding: 60px 20px;
         }
 
-        /* About Section */
-        .about-section {
-            padding: 60px 40px;
+        .section-title {
+            font-size: 3rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        /* About */
+        #about {
             background: var(--secondary);
-            display: flex;
-            align-items: center;
         }
 
         .about-content {
@@ -250,70 +208,18 @@
             align-items: center;
         }
 
-        .about-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--text-light);
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 30px;
-            color: var(--primary);
-        }
-
         .about-text p {
-            margin-bottom: 30px;
-        }
-
-        .about-image {
-            width: 100%;
-            height: 500px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            color: var(--text-light);
+            line-height: 1.8;
         }
 
         .about-image img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(20%);
+            border-radius: 8px;
         }
 
-        /* Gallery Sections */
-        .gallery-section {
-            padding: 60px 20px 40px;
-            background: var(--secondary);
-        }
-
-        .gallery-section.white-bg {
-            background: var(--white);
-        }
-
-        .gallery-header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 0 20px;
-        }
-
-        .gallery-title {
-            font-size: 3rem;
-            font-weight: 300;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .gallery-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        /* Grille de galerie */
+        /* Gallery Grid */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -327,97 +233,67 @@
             overflow: hidden;
             background: #f0f0f0;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             aspect-ratio: 1;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            z-index: 10;
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.3s ease;
         }
 
         .gallery-item:hover img {
-            transform: scale(1.08);
+            transform: scale(1.1);
         }
 
-        /* Section mariage */
-        .wedding-intro {
+        /* Wedding Section */
+        #mariage {
             background: var(--white);
-            padding: 40px 40px;
-            margin-bottom: 20px;
         }
 
-        .wedding-content {
+        .wedding-intro {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 0 auto 40px;
             text-align: center;
         }
 
         .four-columns {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin-top: 40px;
-            width: 100%;
         }
 
         .column-item {
-            flex: 1;
-            padding: 25px 15px;
+            padding: 25px;
             background: var(--secondary);
             border-radius: 12px;
-            transition: all 0.3s ease;
             text-align: center;
-            min-width: 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .column-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-            background: var(--white);
         }
 
         .column-item h3 {
             color: var(--accent);
-            margin-bottom: 12px;
-            font-size: 1.15rem;
-            font-weight: 600;
+            margin-bottom: 10px;
         }
 
         .column-item p {
             color: var(--text-light);
-            line-height: 1.5;
             font-size: 0.9rem;
         }
 
-        /* Sites web section */
-        .web-section {
-            padding: 60px 40px;
+        /* Reportage */
+        #reportage {
+            background: var(--secondary);
+        }
+
+        /* Web Services */
+        #web {
             background: var(--white);
         }
 
-        .web-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .web-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 60px 40px;
+        /* Contact */
+        #contact {
             background: var(--secondary);
         }
 
@@ -427,6 +303,18 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
+        }
+
+        .contact-info h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .contact-info p {
+            color: var(--text-light);
+            margin-bottom: 30px;
         }
 
         .contact-form {
@@ -443,7 +331,6 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: var(--primary);
         }
 
         .form-group input,
@@ -452,8 +339,6 @@
             padding: 15px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            font-size: 1rem;
-            background: var(--white);
         }
 
         .submit-btn {
@@ -462,15 +347,8 @@
             padding: 15px 30px;
             border: none;
             border-radius: 4px;
-            font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
             width: 100%;
-        }
-
-        .submit-btn:hover {
-            background: #b8956a;
-            transform: translateY(-2px);
         }
 
         /* Lightbox */
@@ -483,27 +361,17 @@
             height: 100%;
             background: rgba(0,0,0,0.95);
             z-index: 2000;
-            align-items: center;
             justify-content: center;
+            align-items: center;
         }
 
         .lightbox.active {
             display: flex;
         }
 
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
         .lightbox img {
-            max-width: 100%;
+            max-width: 90%;
             max-height: 90vh;
-            object-fit: contain;
         }
 
         .lightbox-close {
@@ -511,157 +379,27 @@
             top: 20px;
             right: 40px;
             font-size: 3rem;
-            color: var(--white);
+            color: white;
             cursor: pointer;
-            z-index: 2001;
         }
 
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 3rem;
-            color: var(--white);
-            cursor: pointer;
-            padding: 20px;
-            background: rgba(0,0,0,0.3);
-            user-select: none;
-        }
-
-        .lightbox-nav:hover {
-            background: rgba(0,0,0,0.6);
-        }
-
-        .lightbox-prev {
-            left: 20px;
-        }
-
-        .lightbox-next {
-            right: 20px;
-        }
-
-        .lightbox-counter {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--white);
-            font-size: 1rem;
-            background: rgba(0,0,0,0.5);
-            padding: 8px 16px;
-            border-radius: 20px;
-        }
-
-        /* Loading */
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: var(--text-light);
-        }
-
-        .error {
-            color: #d32f2f;
-            text-align: center;
-            padding: 20px;
-        }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 4;
-            cursor: pointer;
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator span {
-            font-size: 2rem;
-            color: var(--white);
-            opacity: 0.8;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .menu-toggle {
-                display: flex;
-            }
-            
+        /* Mobile */
+        @media (max-width: 768px) {
             .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: var(--white);
-                flex-direction: column;
-                justify-content: start;
-                align-items: center;
-                padding-top: 2rem;
-                transition: left 0.3s ease;
-                box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-                z-index: 999;
+                display: none;
             }
             
-            .nav-menu.mobile-active {
-                left: 0;
+            .hero-content h1 {
+                font-size: 2.5rem;
             }
-
-            .nav-menu button {
-                font-size: 1rem;
-                padding: 10px 20px;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .hero .subtitle2 {
-                font-size: 1rem;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-
+            
             .about-content,
             .contact-container {
                 grid-template-columns: 1fr;
             }
-
-            .four-columns {
-                flex-wrap: wrap;
-            }
-
-            .column-item {
-                flex: 1 1 45%;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .four-columns {
-                flex-direction: column;
-            }
-
-            .column-item {
-                flex: 1 1 100%;
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
         }
     </style>
@@ -670,434 +408,238 @@
     <!-- Navigation -->
     <nav class="nav-horizontal">
         <div class="nav-container">
-            <button class="logo" onclick="scrollToSection('home')">Vianney Hastings</button>
-            <ul class="nav-menu" id="navMenu">
-                <li><button onclick="scrollToSection('home')" class="active">Accueil</button></li>
-                <li><button onclick="scrollToSection('about')">À propos</button></li>
-                <li><button onclick="scrollToSection('portrait')">Portrait</button></li>
-                <li><button onclick="scrollToSection('mariage')">Mariage</button></li>
-                <li><button onclick="scrollToSection('reportage')">Reportage</button></li>
-                <li><button onclick="scrollToSection('web')">Sites Web</button></li>
-                <li><button onclick="scrollToSection('contact')">Contact</button></li>
+            <button class="logo" onclick="location.href='#home'">Vianney Hastings</button>
+            <ul class="nav-menu">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#portrait">Portrait</a></li>
+                <li><a href="#mariage">Mariage</a></li>
+                <li><a href="#reportage">Reportage</a></li>
+                <li><a href="#web">Sites Web</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-            <button class="menu-toggle" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </nav>
 
-    <!-- Container principal -->
-    <div id="app">
-        <!-- Section Accueil -->
-        <section id="home" class="section home-section">
-            <div class="hero-background"></div>
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <h1>Vianney Hastings</h1>
-                <p class="subtitle">Photographe Mariages, Événements, Portraits</p>
-                <p class="subtitle2">Créateur de sites web</p>
-                <button class="cta-button" onclick="scrollToSection('about')">Découvrir mon travail</button>
-            </div>
-            <div class="scroll-indicator" onclick="scrollToSection('about')">
-                <span>↓</span>
-            </div>
-        </section>
+    <!-- Hero -->
+    <section id="home">
+        <div class="hero-background"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Vianney Hastings</h1>
+            <p>Photographe Mariages, Événements, Portraits</p>
+            <p class="subtitle2">Créateur de sites web</p>
+            <a href="#about" class="cta-button">Découvrir mon travail</a>
+        </div>
+    </section>
 
-        <!-- Section À propos -->
-        <section id="about" class="section about-section">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>À propos</h2>
-                    <p>Vianney, 30 ans, photographe de passion, originaire de Nantes, j'ai beaucoup voyagé entre l'Amérique du sud, l'Asie et le Royaume-Uni où j'ai résidé pendant 5 ans.</p>
-                    <p>Mon goût pour le voyage m'a donné cette passion pour la photographie que j'ai envie de partager aujourd'hui. J'ai hâte de pouvoir échanger avec vous et de vous accompagner sur chacun de vos projets.</p>
-                </div>
-                <div class="about-image">
-                    <img src="https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/Vianney.jpg" alt="Portrait de Vianney Hastings">
-                </div>
+    <!-- À propos -->
+    <section id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2 class="section-title">À propos</h2>
+                <p>Vianney, 30 ans, photographe de passion, originaire de Nantes, j'ai beaucoup voyagé entre l'Amérique du sud, l'Asie et le Royaume-Uni où j'ai résidé pendant 5 ans.</p>
+                <p>Mon goût pour le voyage m'a donné cette passion pour la photographie que j'ai envie de partager aujourd'hui. J'ai hâte de pouvoir échanger avec vous et de vous accompagner sur chacun de vos projets.</p>
             </div>
-        </section>
+            <div class="about-image">
+                <img src="https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/Vianney.jpg" alt="Vianney">
+            </div>
+        </div>
+    </section>
 
-        <!-- Section Portrait -->
-        <section id="portrait" class="section gallery-section">
-            <div class="gallery-header">
-                <h2 class="gallery-title">Portraits</h2>
-                <p class="gallery-subtitle">Capturer l'essence de chaque personnalité dans des portraits authentiques et naturels</p>
-            </div>
-            <div id="portrait-gallery" class="gallery-grid">
-                <div class="loading">Chargement des portraits...</div>
-            </div>
-        </section>
+    <!-- Portrait -->
+    <section id="portrait">
+        <h2 class="section-title">Portraits</h2>
+        <p class="section-subtitle">Capturer l'essence de chaque personnalité</p>
+        <div class="gallery-grid" id="portrait-gallery"></div>
+    </section>
 
-        <!-- Section Mariage -->
-        <section id="mariage" class="section gallery-section white-bg">
-            <div class="wedding-intro">
-                <div class="wedding-content">
-                    <h2 style="font-size: 3rem; font-weight: 300; color: var(--primary); margin-bottom: 30px;">Mariages</h2>
-                    <p style="font-size: 1.2rem; color: var(--text-light); line-height: 1.8; margin-bottom: 40px;">
-                        Votre mariage est unique, et chaque instant mérite d'être immortalisé avec élégance.
-                    </p>
-                    <div class="four-columns">
-                        <div class="column-item">
-                            <h3>Préparatifs</h3>
-                            <p>Les moments intimes de préparation, l'émotion des premiers regards.</p>
-                        </div>
-                        <div class="column-item">
-                            <h3>Cérémonie</h3>
-                            <p>L'échange des vœux, les larmes de joie, capturés avec sensibilité.</p>
-                        </div>
-                        <div class="column-item">
-                            <h3>Réception</h3>
-                            <p>L'ambiance festive et tous les moments spontanés de votre soirée.</p>
-                        </div>
-                        <div class="column-item">
-                            <h3>Couple</h3>
-                            <p>Des portraits romantiques dans des décors soigneusement choisis.</p>
-                        </div>
-                    </div>
+    <!-- Mariage -->
+    <section id="mariage">
+        <div class="wedding-intro">
+            <h2 class="section-title">Mariages</h2>
+            <p class="section-subtitle">Votre mariage est unique, chaque instant mérite d'être immortalisé</p>
+            <div class="four-columns">
+                <div class="column-item">
+                    <h3>Préparatifs</h3>
+                    <p>Les moments intimes de préparation</p>
+                </div>
+                <div class="column-item">
+                    <h3>Cérémonie</h3>
+                    <p>L'échange des vœux capturé avec sensibilité</p>
+                </div>
+                <div class="column-item">
+                    <h3>Réception</h3>
+                    <p>L'ambiance festive de votre soirée</p>
+                </div>
+                <div class="column-item">
+                    <h3>Couple</h3>
+                    <p>Des portraits romantiques</p>
                 </div>
             </div>
-            <div class="gallery-header">
-                <p class="gallery-subtitle">Découvrez une sélection de mes plus beaux mariages</p>
-            </div>
-            <div id="wedding-gallery" class="gallery-grid">
-                <div class="loading">Chargement des mariages...</div>
-            </div>
-        </section>
+        </div>
+        <div class="gallery-grid" id="wedding-gallery"></div>
+    </section>
 
-        <!-- Section Reportage -->
-        <section id="reportage" class="section gallery-section">
-            <div class="gallery-header">
-                <h2 class="gallery-title">Reportages & Architecture</h2>
-                <p class="gallery-subtitle">Raconter des histoires à travers l'objectif, capturer l'essence des lieux et des moments.</p>
-            </div>
-            <div id="reportage-gallery" class="gallery-grid">
-                <div class="loading">Chargement des reportages...</div>
-            </div>
-        </section>
+    <!-- Reportage -->
+    <section id="reportage">
+        <h2 class="section-title">Reportages & Architecture</h2>
+        <p class="section-subtitle">Raconter des histoires à travers l'objectif</p>
+        <div class="gallery-grid" id="reportage-gallery"></div>
+    </section>
 
-        <!-- Section Sites Web -->
-        <section id="web" class="section web-section">
-            <div class="web-content">
-                <div class="web-header">
-                    <h2 style="font-size: 3rem; font-weight: 300; color: var(--primary); margin-bottom: 20px;">Création de Sites Web</h2>
-                    <p style="font-size: 1.2rem; color: var(--text-light); max-width: 700px; margin: 0 auto; line-height: 1.8;">
-                        En complément de mes services photographiques, je propose la création de sites web personnalisés.
-                    </p>
-                </div>
-                <div class="four-columns">
-                    <div class="column-item">
-                        <h3>🔍 Qualification du besoin</h3>
-                        <p>Entretien initial pour comprendre vos objectifs et créer un site qui vous ressemble.</p>
-                    </div>
-                    <div class="column-item">
-                        <h3>🧭 Définition du périmètre</h3>
-                        <p>Choix des fonctionnalités et technologies. Prestation photo sur site possible.</p>
-                    </div>
-                    <div class="column-item">
-                        <h3>🛠️ Création et validation</h3>
-                        <p>Développement, tests et validation finale avant mise en ligne.</p>
-                    </div>
-                    <div class="column-item">
-                        <h3>🔄 Évolutions</h3>
-                        <p>Retouches et forfaits de maintenance pour faire évoluer votre site.</p>
-                    </div>
-                </div>
+    <!-- Sites Web -->
+    <section id="web">
+        <h2 class="section-title">Création de Sites Web</h2>
+        <p class="section-subtitle">Sites web personnalisés pour votre activité</p>
+        <div class="four-columns">
+            <div class="column-item">
+                <h3>🔍 Qualification</h3>
+                <p>Comprendre vos objectifs</p>
             </div>
-        </section>
+            <div class="column-item">
+                <h3>🧭 Périmètre</h3>
+                <p>Définir les fonctionnalités</p>
+            </div>
+            <div class="column-item">
+                <h3>🛠️ Création</h3>
+                <p>Développement et tests</p>
+            </div>
+            <div class="column-item">
+                <h3>🔄 Évolutions</h3>
+                <p>Maintenance et mises à jour</p>
+            </div>
+        </div>
+    </section>
 
-        <!-- Section Contact -->
-        <section id="contact" class="section contact-section">
-            <div class="contact-container">
-                <div>
-                    <h3 style="font-size: 2rem; margin-bottom: 40px; color: var(--primary);">Parlons de votre projet</h3>
-                    <div style="margin-bottom: 30px;">
-                        <h4 style="font-size: 0.9rem; font-weight: 500; color: var(--accent); margin-bottom: 10px; text-transform: uppercase;">Téléphone</h4>
-                        <p style="color: var(--text-light); font-size: 1.1rem;">07 67 28 80 86</p>
-                    </div>
-                    <div style="margin-bottom: 30px;">
-                        <h4 style="font-size: 0.9rem; font-weight: 500; color: var(--accent); margin-bottom: 10px; text-transform: uppercase;">Email</h4>
-                        <p style="color: var(--text-light); font-size: 1.1rem;">vianneyhastings@gmail.com</p>
-                    </div>
-                    <div>
-                        <h4 style="font-size: 0.9rem; font-weight: 500; color: var(--accent); margin-bottom: 10px; text-transform: uppercase;">Localisation</h4>
-                        <p style="color: var(--text-light); font-size: 1.1rem;">Paris et région parisienne<br>Déplacements possibles</p>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form onsubmit="handleSubmit(event)">
-                        <div class="form-group">
-                            <label>Nom *</label>
-                            <input type="text" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email *</label>
-                            <input type="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Message</label>
-                            <textarea rows="5" placeholder="Décrivez votre projet..."></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Envoyer le message</button>
-                    </form>
-                </div>
+    <!-- Contact -->
+    <section id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h4>Téléphone</h4>
+                <p>07 67 28 80 86</p>
+                <h4>Email</h4>
+                <p>vianneyhastings@gmail.com</p>
+                <h4>Localisation</h4>
+                <p>Paris et région parisienne</p>
             </div>
-        </section>
-    </div>
+            <div class="contact-form">
+                <form onsubmit="event.preventDefault(); alert('Message envoyé !');">
+                    <div class="form-group">
+                        <label>Nom</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <!-- Lightbox -->
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <span class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1)">‹</span>
-        <span class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1)">›</span>
-        <div class="lightbox-content">
-            <img id="lightbox-img" src="" alt="">
-        </div>
-        <div class="lightbox-counter">
-            <span id="current-img">1</span> / <span id="total-img">1</span>
-        </div>
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="">
     </div>
 
     <script>
-        // Variables globales
-        let currentGalleryImages = [];
-        let currentImageIndex = 0;
-        let currentSection = 'home';
-        let galleryCache = {};
+        // Base URL pour toutes les images
+        const baseURL = 'https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/';
 
-        // Navigation par scroll - sans rechargement car tout est préchargé
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-                currentSection = sectionId;
-                updateNavActive(sectionId);
-                
-                // Fermer le menu mobile
-                const navMenu = document.querySelector('.nav-menu');
-                if (navMenu) navMenu.classList.remove('mobile-active');
-                
-                // Les galeries sont déjà chargées, pas besoin de les recharger
-            }
+        // Fonction simple pour créer une image de galerie
+        function createGalleryItem(src) {
+            const div = document.createElement('div');
+            div.className = 'gallery-item';
+            div.onclick = () => openLightbox(src);
+            
+            const img = document.createElement('img');
+            img.src = src;
+            img.loading = 'lazy';
+            
+            div.appendChild(img);
+            return div;
         }
 
-        // Mettre à jour le menu actif
-        function updateNavActive(sectionId) {
-            document.querySelectorAll('.nav-menu button').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.textContent.toLowerCase().includes(sectionId) || 
-                    (sectionId === 'home' && btn.textContent === 'Accueil') ||
-                    (sectionId === 'about' && btn.textContent === 'À propos') ||
-                    (sectionId === 'web' && btn.textContent === 'Sites Web')) {
-                    btn.classList.add('active');
-                }
+        // Charger Portrait (test avec quelques images d'abord)
+        function loadPortrait() {
+            const container = document.getElementById('portrait-gallery');
+            const images = [
+                'Alexandra%20and%20Janine.jpg',
+                'Alexandra.jpg',
+                'DSC00045.jpg',
+                'DSC00272-scaled.jpg',
+                'DSC03483.jpg',
+                'DSC03537.jpg',
+                'DSC03805.jpg',
+                'DSC04454.jpg'
+            ];
+            
+            images.forEach(img => {
+                container.appendChild(createGalleryItem(baseURL + 'portrait/' + img));
             });
         }
 
-        // Fonction générique pour charger une galerie depuis un dossier GitHub
-        async function loadGalleryFromFolder(folderName, containerId) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
+        // Charger Wedding (test avec quelques images)
+        function loadWedding() {
+            const container = document.getElementById('wedding-gallery');
+            const images = [
+                'DSC00018.jpg',
+                'DSC00053.jpg',
+                'DSC03715.jpg',
+                'DSC03743.jpg',
+                'DSC03747.jpg',
+                'DSC03765.jpg',
+                'DSC03772.jpg',
+                'DSC03792.jpg'
+            ];
             
-            // Utiliser le cache si disponible
-            if (galleryCache[folderName]) {
-                displayGallery(galleryCache[folderName], container);
-                return;
-            }
-            
-            container.innerHTML = '<div class="loading">Chargement...</div>';
-            
-            try {
-                console.log(`Chargement du dossier: ${folderName}`);
-                const response = await fetch(`https://api.github.com/repos/EmailSortpro/vianneyphotography/contents/${folderName}`);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status} - Dossier ${folderName} introuvable`);
-                }
-                
-                const files = await response.json();
-                
-                // Filtrer uniquement les images
-                const imageFiles = files.filter(file => 
-                    file.type === 'file' && 
-                    /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name)
-                );
-                
-                // Mettre en cache
-                galleryCache[folderName] = imageFiles;
-                
-                // Afficher la galerie
-                displayGallery(imageFiles, container);
-                
-                console.log(`✓ ${imageFiles.length} images chargées depuis ${folderName}`);
-                
-            } catch (error) {
-                console.error(`Erreur lors du chargement de ${folderName}:`, error);
-                container.innerHTML = `<div class="error">Erreur de chargement du dossier ${folderName}</div>`;
-            }
+            images.forEach(img => {
+                container.appendChild(createGalleryItem(baseURL + 'wedding/' + img));
+            });
         }
 
-        // Charger la galerie Reportage (combine reportage + archi)
-        async function loadReportageGallery() {
+        // Charger Reportage (test avec quelques images)
+        function loadReportage() {
             const container = document.getElementById('reportage-gallery');
-            if (!container) return;
+            const images = [
+                '0.jpg',
+                '1.jpg',
+                '2.jpg',
+                '3.jpg',
+                '7.jpg',
+                '21.jpg',
+                '40.jpg',
+                '50.jpg'
+            ];
             
-            // Utiliser le cache si disponible
-            if (galleryCache['reportage-combined']) {
-                displayGallery(galleryCache['reportage-combined'], container);
-                return;
-            }
-            
-            container.innerHTML = '<div class="loading">Chargement...</div>';
-            
-            try {
-                console.log('Chargement des dossiers reportage et archi...');
-                
-                // Charger les deux dossiers en parallèle
-                const [reportageResponse, archiResponse] = await Promise.all([
-                    fetch('https://api.github.com/repos/EmailSortpro/vianneyphotography/contents/reportage'),
-                    fetch('https://api.github.com/repos/EmailSortpro/vianneyphotography/contents/archi')
-                ]);
-                
-                if (!reportageResponse.ok || !archiResponse.ok) {
-                    throw new Error('Erreur lors du chargement des dossiers');
-                }
-                
-                const reportageFiles = await reportageResponse.json();
-                const archiFiles = await archiResponse.json();
-                
-                // Filtrer et combiner les images
-                const reportageImages = reportageFiles.filter(file => 
-                    file.type === 'file' && /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name)
-                );
-                const archiImages = archiFiles.filter(file => 
-                    file.type === 'file' && /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name)
-                );
-                
-                const allImages = [...reportageImages, ...archiImages];
-                
-                // Mettre en cache
-                galleryCache['reportage-combined'] = allImages;
-                
-                // Afficher
-                displayGallery(allImages, container);
-                
-                console.log(`✓ ${reportageImages.length} images de reportage + ${archiImages.length} images d'architecture = ${allImages.length} images totales`);
-                
-            } catch (error) {
-                console.error('Erreur lors du chargement reportage/archi:', error);
-                container.innerHTML = '<div class="error">Erreur de chargement des reportages</div>';
-            }
-        }
-
-        // Afficher une galerie
-        function displayGallery(imageFiles, container) {
-            container.innerHTML = '';
-            const imageUrls = [];
-            
-            imageFiles.forEach((file, index) => {
-                imageUrls.push(file.download_url);
-                
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                item.onclick = () => openLightbox(imageUrls, index);
-                
-                const img = document.createElement('img');
-                img.src = file.download_url;
-                img.alt = file.name;
-                img.loading = 'lazy';
-                
-                item.appendChild(img);
-                container.appendChild(item);
+            images.forEach(img => {
+                container.appendChild(createGalleryItem(baseURL + 'reportage/' + img));
             });
         }
 
         // Lightbox
-        function openLightbox(images, index) {
-            currentGalleryImages = images;
-            currentImageIndex = index;
-            updateLightboxImage();
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function updateLightboxImage() {
-            document.getElementById('lightbox-img').src = currentGalleryImages[currentImageIndex];
-            document.getElementById('current-img').textContent = currentImageIndex + 1;
-            document.getElementById('total-img').textContent = currentGalleryImages.length;
-        }
-
-        function changeLightboxImage(direction) {
-            currentImageIndex += direction;
-            if (currentImageIndex < 0) {
-                currentImageIndex = currentGalleryImages.length - 1;
-            } else if (currentImageIndex >= currentGalleryImages.length) {
-                currentImageIndex = 0;
-            }
-            updateLightboxImage();
         }
 
         function closeLightbox() {
             document.getElementById('lightbox').classList.remove('active');
-            document.body.style.overflow = '';
         }
 
-        // Menu mobile
-        function toggleMobileMenu() {
-            const navMenu = document.querySelector('.nav-menu');
-            navMenu.classList.toggle('mobile-active');
-        }
-
-        // Formulaire
-        function handleSubmit(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('.submit-btn');
-            btn.textContent = 'Message envoyé !';
-            btn.style.background = '#4CAF50';
-            setTimeout(() => {
-                btn.textContent = 'Envoyer le message';
-                btn.style.background = '';
-                e.target.reset();
-            }, 3000);
-        }
-
-        // Détection du scroll pour la navigation active
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('.section');
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (window.scrollY >= (sectionTop - 100)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            if (current && current !== currentSection) {
-                currentSection = current;
-                updateNavActive(current);
-            }
-        });
-
-        // Navigation clavier
-        document.addEventListener('keydown', (e) => {
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox && lightbox.classList.contains('active')) {
-                if (e.key === 'Escape') closeLightbox();
-                else if (e.key === 'ArrowLeft') changeLightboxImage(-1);
-                else if (e.key === 'ArrowRight') changeLightboxImage(1);
-            }
-        });
-
-        // Initialisation
+        // Charger les galeries au démarrage
         document.addEventListener('DOMContentLoaded', () => {
-            updateNavActive('home');
-            
-            // Précharger la première galerie après un court délai
-            setTimeout(() => {
-                loadGalleryFromFolder('portrait', 'portrait-gallery');
-            }, 1000);
+            loadPortrait();
+            loadWedding();
+            loadReportage();
         });
     </script>
 </body>
