@@ -1100,15 +1100,23 @@
             }
         }
 
-        // Initialisation
+        // Initialisation avec forçage du chargement initial
         document.addEventListener('DOMContentLoaded', () => {
             // Charger les galeries avec priorité
             loadGallery('portrait', 'portrait-gallery');
             
-            // Charger les autres galeries après un court délai
+            // Charger les autres galeries
             setTimeout(() => {
                 loadGallery('wedding', 'wedding-gallery');
                 loadGallery('reportage', 'reportage-gallery');
+                
+                // Forcer le chargement des premières images de chaque galerie
+                document.querySelectorAll('.gallery-item img').forEach((img, index) => {
+                    if (index < 6 && img.dataset.src) {
+                        // Charger immédiatement les 6 premières images visibles
+                        loadImageWithFallback(img);
+                    }
+                });
             }, 100);
             
             // Précharger quelques images importantes
@@ -1116,6 +1124,15 @@
                 baseURL + 'DSC03748.jpg',
                 baseURL + 'Vianney.jpg'
             ]);
+            
+            // Vérifier et recharger les images non chargées après 2 secondes
+            setTimeout(() => {
+                document.querySelectorAll('.gallery-item img').forEach(img => {
+                    if (!img.src.includes('http') && img.dataset.src) {
+                        imageObserver.observe(img);
+                    }
+                });
+            }, 2000);
         });
 
         // Optimisation de la performance
