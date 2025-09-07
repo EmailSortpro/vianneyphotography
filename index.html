@@ -866,7 +866,7 @@
         let currentSection = 'home';
         let galleryCache = {};
 
-        // Navigation par scroll
+        // Navigation par scroll - sans rechargement car tout est préchargé
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
             if (section) {
@@ -878,14 +878,7 @@
                 const navMenu = document.querySelector('.nav-menu');
                 if (navMenu) navMenu.classList.remove('mobile-active');
                 
-                // Charger les galeries si nécessaire
-                if (sectionId === 'portrait') {
-                    loadGalleryFromFolder('portrait', 'portrait-gallery');
-                } else if (sectionId === 'mariage') {
-                    loadGalleryFromFolder('wedding', 'wedding-gallery');
-                } else if (sectionId === 'reportage') {
-                    loadReportageGallery();
-                }
+                // Les galeries sont déjà chargées, pas besoin de les recharger
             }
         }
 
