@@ -554,21 +554,41 @@
         // Base URL pour toutes les images
         const baseURL = 'https://raw.githubusercontent.com/EmailSortpro/vianneyphotography/main/';
 
-        // Fonction simple pour créer une image de galerie
+        // Fonction optimisée pour créer une image avec lazy loading réel
         function createGalleryItem(src) {
             const div = document.createElement('div');
             div.className = 'gallery-item';
-            div.onclick = () => openLightbox(src);
             
             const img = document.createElement('img');
-            img.src = src;
+            // Placeholder léger en base64
+            img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"%3E%3Crect width="400" height="400" fill="%23f0f0f0"/%3E%3C/svg%3E';
+            img.dataset.src = src;
             img.loading = 'lazy';
+            img.decoding = 'async';
             
             div.appendChild(img);
+            div.onclick = () => openLightbox(src);
+            
             return div;
         }
 
-        // Charger Portrait - TOUTES les 18 images
+        // Observer pour le lazy loading optimisé
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        delete img.dataset.src;
+                        imageObserver.unobserve(img);
+                    }
+                }
+            });
+        }, {
+            rootMargin: '50px'
+        });
+
+        // Charger Portrait - Chargement progressif
         function loadPortrait() {
             const container = document.getElementById('portrait-gallery');
             const images = [
@@ -592,12 +612,10 @@
                 'DSC09922.jpg'
             ];
             
-            images.forEach(img => {
-                container.appendChild(createGalleryItem(baseURL + 'portrait/' + img));
-            });
+            loadGalleryBatch(images, container, 'portrait/');
         }
 
-        // Charger Wedding - TOUTES les 50 images
+        // Charger Wedding - Chargement progressif
         function loadWedding() {
             const container = document.getElementById('wedding-gallery');
             const images = [
@@ -653,12 +671,10 @@
                 'WhatsApp%20Image%202020-09-22%20at%2015.23.13.jpeg'
             ];
             
-            images.forEach(img => {
-                container.appendChild(createGalleryItem(baseURL + 'wedding/' + img));
-            });
+            loadGalleryBatch(images, container, 'wedding/');
         }
 
-        // Charger Reportage - TOUTES les 24 images
+        // Charger Reportage - Chargement progressif
         function loadReportage() {
             const container = document.getElementById('reportage-gallery');
             const images = [
@@ -688,26 +704,66 @@
                 'WhatsApp%20Image%202024-11-06%20at%2010.30.29_e0978609.jpg'
             ];
             
+            loadGalleryBatch(images, container, 'reportage/');
+        }
+
+        // Fonction pour charger les images par batch
+        function loadGalleryBatch(images, container, folder) {
+            const fragment = document.createDocumentFragment();
+            
             images.forEach(img => {
-                container.appendChild(createGalleryItem(baseURL + 'reportage/' + img));
+                const item = createGalleryItem(baseURL + folder + img);
+                fragment.appendChild(item);
+            });
+            
+            container.appendChild(fragment);
+            
+            // Observer toutes les images pour le lazy loading
+            container.querySelectorAll('img').forEach(img => {
+                imageObserver.observe(img);
             });
         }
 
-        // Lightbox
+        // Lightbox optimisée
         function openLightbox(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').classList.add('active');
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            
+            // Afficher la lightbox d'abord
+            lightbox.classList.add('active');
+            
+            // Charger l'image après
+            img.src = src;
         }
 
         function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            
+            lightbox.classList.remove('active');
+            // Nettoyer l'image après fermeture
+            setTimeout(() => {
+                img.src = '';
+            }, 300);
         }
 
-        // Charger les galeries au démarrage
+        // Initialisation optimisée
         document.addEventListener('DOMContentLoaded', () => {
+            // Charger d'abord Portrait qui est visible
             loadPortrait();
-            loadWedding();
-            loadReportage();
+            
+            // Charger les autres galeries après un délai
+            setTimeout(() => {
+                loadWedding();
+                loadReportage();
+            }, 500);
+        });
+
+        // Fermer lightbox avec Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
         });
     </script>
 </body>
